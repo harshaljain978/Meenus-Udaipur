@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Meenu's Udaipur | Heritage Experiences Since 1995</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#FFFFFF', 
+              dark: '#000000', 
+              text: '#1D1D1F',
+              muted: '#86868B',
+              border: '#E8E8ED',
+              soft: '#F5F5F7'
+            }
+          },
+          fontFamily: { 
+            display: ['Playfair Display', 'serif'], 
+            body: ['Plus Jakarta Sans', 'sans-serif'] 
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/css">
+    body { background-color: #FFFFFF; color: #1D1D1F; -webkit-font-smoothing: antialiased; }
+    
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Delicate Fine Line Sketches */
+    .fine-line-sketch {
+        position: absolute;
+        pointer-events: none;
+        stroke: #000000;
+        stroke-width: 0.35;
+        fill: none;
+        opacity: 0.06;
+        z-index: 1;
+    }
+
+    /* Desktop Sidebar */
+    #sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 280px;
+      border-right: 1px solid #F2F2F7;
+      z-index: 1000;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      background: #FFFFFF;
+    }
+
+    #main-content { margin-left: 280px; }
+
+    /* Dynamic Island Mobile Header */
+    #mobile-nav-container {
+      display: none;
+      position: fixed; top: 15px; left: 0; right: 0;
+      z-index: 1001;
+      padding: 0 20px;
+    }
+    
+    .dynamic-island {
+      background: #000000;
+      border-radius: 100px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      max-width: 420px;
+      margin: 0 auto;
+      color: #FFFFFF;
+    }
+
+    @media (max-width: 1024px) {
+      #sidebar { display: none; }
+      #main-content { margin-left: 0; }
+      #mobile-nav-container { display: block; }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 9vw, 8.5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    /* Heritage Curved Cards */
+    .heritage-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E8ED;
+      border-radius: 40px;
+      overflow: hidden;
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .heritage-card:hover {
+      transform: translateY(-12px);
+      border-color: #000000;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.06);
+    }
+
+    .img-vibrant { 
+        transition: 1.5s transform cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+    .heritage-card:hover .img-vibrant { transform: scale(1.1); }
+
+    .btn-stark {
+      background: #000000;
+      color: #FFFFFF;
+      transition: all 0.3s ease;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+    .btn-stark:hover { transform: scale(1.02); opacity: 0.9; }
+
+    /* Fade-Fade Stat Animation */
+    .stat-item { opacity: 0; transform: scale(0.98); transition: opacity 2s ease, transform 2s ease; }
+    .stat-item.active { opacity: 1; transform: scale(1); }
+
+    .stats-island {
+      background: #FDFDFD;
+      border-radius: 60px;
+      padding: 80px 40px;
+      border: 1px solid #F2F2F7;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="font-body selection:bg-brand-dark selection:text-white overflow-x-hidden">
+
+  <!-- MOBILE NAV -->
+  <div id="mobile-nav-container">
+    <div class="dynamic-island">
+      <a href="#hero" class="font-display font-bold text-lg tracking-tighter text-white">Meenu's</a>
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/919783786028" target="_blank" class="text-[0.6rem] font-bold uppercase tracking-widest text-white border-r border-white/20 pr-4">Book Now</a>
+        <button onclick="toggleMobileMenu()" class="text-white text-lg"><i id="menu-icon" class="fa-solid fa-bars-staggered"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR (DESKTOP) -->
+  <aside id="sidebar">
+    <div class="mb-20">
+      <a href="#hero" class="flex flex-col group">
+        <span class="font-display text-4xl font-bold tracking-tighter text-brand-dark">Meenu's</span>
+        <span class="text-[0.6rem] uppercase tracking-[0.5em] font-bold text-brand-muted mt-2">Udaipur</span>
+      </a>
+    </div>
+
+    <nav class="flex flex-col space-y-12">
+      <a href="#about" class="text-[0.65rem] font-bold uppercase tracking-[0.4em] text-brand-muted hover:text-brand-dark transition-all">01 — The Story</a>
+      <a href="#stats-section" class="text-[0.65rem] font-bold uppercase tracking-[0.4em] text-brand-muted hover:text-brand-dark transition-all">02 — Our Legacy</a>
+      <a href="#experiences" class="text-[0.65rem] font-bold uppercase tracking-[0.4em] text-brand-muted hover:text-brand-dark transition-all">03 — Offerings</a>
+      <a href="#trust-hub" class="text-[0.65rem] font-bold uppercase tracking-[0.4em] text-brand-muted hover:text-brand-dark transition-all">04 — Reputation</a>
+      <a href="#booking" class="text-[0.65rem] font-bold uppercase tracking-[0.4em] text-brand-muted hover:text-brand-dark transition-all">05 — Connect</a>
+    </nav>
+
+    <div class="mt-auto">
+      <a href="https://wa.me/919783786028" target="_blank" class="btn-stark block text-center py-4 text-[0.6rem] uppercase tracking-widest shadow-xl mb-10">WhatsApp Inquiries</a>
+      <p class="text-[0.55rem] text-brand-muted font-bold uppercase tracking-[1em] text-center opacity-40">EST. 1995</p>
+    </div>
+  </aside>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-[1005] flex flex-col items-center justify-center space-y-12 translate-x-full transition-transform duration-600 ease-in-out p-10">
+    <a href="#about" onclick="toggleMobileMenu()" class="text-6xl font-display font-bold text-brand-dark">The Story</a>
+    <a href="#experiences" onclick="toggleMobileMenu()" class="text-6xl font-display font-bold text-brand-dark">Offerings</a>
+    <a href="#booking" onclick="toggleMobileMenu()" class="text-6xl font-display font-bold text-brand-dark">Connect</a>
+    <button onclick="toggleMobileMenu()" class="text-brand-muted text-[0.7rem] uppercase tracking-[0.8em] font-bold pt-16">Close</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    
+    <!-- HERO SECTION -->
+    <section id="hero" class="min-h-screen flex items-center px-6 md:px-12 lg:px-24 py-32 relative bg-brand-bg overflow-hidden border-b border-brand-border">
+      <!-- Fine Line Architectural Sketches -->
+      <svg class="fine-line-sketch top-20 right-[-5%] w-[55%] h-auto" viewBox="0 0 200 240">
+          <path d="M20 240 V100 Q100 20 180 100 V240" stroke-dasharray="2 6"/>
+          <path d="M50 240 V130 Q100 80 150 130 V240" />
+          <path d="M100 20 L100 0 M100 80 L100 60" />
+          <circle cx="100" cy="170" r="20" stroke-dasharray="4 4"/>
+      </svg>
+
+      <div class="max-w-7xl w-full relative z-10">
+        <div class="mb-14 reveal">
+            <span class="inline-block h-[1px] w-14 bg-black align-middle mr-6"></span>
+            <span class="text-brand-dark text-[0.75rem] font-bold uppercase tracking-[0.8em]">Ancestral Wisdom Since 1995</span>
+        </div>
+        
+        <h1 class="hero-title font-display text-brand-dark mb-24 font-bold">
+          <span class="opacity-20 block mb-6 font-light italic">The taste of authenticity at</span>
+          <span class="block">Meenu's Udaipur</span>
+        </h1>
+
+        <div class="flex flex-col md:flex-row items-start gap-16 reveal stagger-2">
+          <a href="#experiences" class="btn-stark px-16 py-6 text-[0.7rem] uppercase tracking-widest shadow-2xl">
+            See the Offerings
+          </a>
+          <div class="max-w-[340px] pt-1">
+            <p class="text-brand-muted text-[0.8rem] font-medium leading-relaxed uppercase tracking-widest mb-4">
+                Preserving three decades of cultural narratives.
+            </p>
+            <div class="h-[1px] w-12 bg-brand-border"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NARRATIVE -->
+    <section id="about" class="py-40 md:py-60 px-6 md:px-12 lg:px-24 bg-[#FAFAFA] relative overflow-hidden">
+        <!-- Minimal Tool Sketch -->
+        <svg class="fine-line-sketch top-20 left-[-5%] w-[30%] h-auto opacity-10" viewBox="0 0 100 100">
+            <path d="M30 40 L70 40 Q70 80 50 90 Q30 80 30 40 Z" />
+            <path d="M40 30 Q50 20 60 30" />
+        </svg>
+
+      <div class="max-w-5xl reveal relative z-10">
+        <span class="text-brand-muted text-[0.6rem] font-bold uppercase tracking-[0.8em] mb-16 block">01 / THE HERITAGE</span>
+        <h2 class="font-display text-5xl md:text-8xl text-brand-dark mb-20 leading-none font-bold tracking-tighter">Udaipur as it is lived.</h2>
+        <p class="text-2xl md:text-5xl text-brand-muted font-display leading-tight max-w-4xl italic font-light">
+          "Since 1995, we have been the bridge between the world and the soul of the Lake City. We invite you into our lineage—where every spice is family and every walk is history."
+        </p>
+      </div>
+    </section>
+
+    <!-- LEGACY STATS (FADE-FADE ANIMATION) -->
+    <section id="stats-section" class="py-40 px-6 md:px-12 lg:px-24 bg-white relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-32 reveal text-center">
+          <span class="text-brand-muted text-[0.6rem] font-bold uppercase tracking-[0.8em] mb-8 block">02 / LEGACY IN NUMBERS</span>
+          <h3 class="font-display text-5xl md:text-7xl font-bold tracking-tighter">A generation of connections.</h3>
+        </div>
+
+        <div class="stats-island reveal shadow-sm border border-brand-border">
+          <svg class="fine-line-sketch bottom-[-10%] right-[-10%] w-[40%] h-auto opacity-10" viewBox="0 0 100 100">
+            <path d="M10 50 Q50 10 90 50 Q50 90 10 50" />
+            <path d="M10 50 L90 50 M50 10 L50 90" stroke-dasharray="2 4"/>
+          </svg>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-32 gap-x-16 relative z-10">
+            <div class="text-center space-y-6 stat-item">
+              <div class="text-7xl md:text-[8rem] font-display font-bold tracking-tighter leading-none text-brand-dark">
+                <span class="counter" data-target="4000">12</span>+
+              </div>
+              <p class="text-[0.65rem] uppercase tracking-[0.6em] font-bold text-brand-muted">Cooking Alumni</p>
+            </div>
+            <div class="text-center space-y-6 stat-item">
+              <div class="text-7xl md:text-[8rem] font-display font-bold tracking-tighter leading-none text-brand-dark">
+                <span class="counter" data-target="5000">12</span>+
+              </div>
+              <p class="text-[0.65rem] uppercase tracking-[0.6em] font-bold text-brand-muted">Heritage Walkers</p>
+            </div>
+            <div class="text-center space-y-6 stat-item">
+              <div class="text-7xl md:text-[8rem] font-display font-bold tracking-tighter leading-none text-brand-dark">
+                <span class="counter" data-target="800">12</span>+
+              </div>
+              <p class="text-[0.65rem] uppercase tracking-[0.6em] font-bold text-brand-muted">Dining Guests</p>
+            </div>
+            <div class="text-center space-y-6 stat-item">
+              <div class="text-7xl md:text-[8rem] font-display font-bold tracking-tighter leading-none text-brand-dark">
+                <span class="counter" data-target="600">12</span>+
+              </div>
+              <p class="text-[0.65rem] uppercase tracking-[0.6em] font-bold text-brand-muted">Mehndi Art</p>
+            </div>
+            <div class="text-center space-y-6 stat-item">
+              <div class="text-7xl md:text-[8rem] font-display font-bold tracking-tighter leading-none text-brand-dark">
+                <span class="counter" data-target="300">12</span>+
+              </div>
+              <p class="text-[0.65rem] uppercase tracking-[0.6em] font-bold text-brand-muted">Homestay Stays</p>
+            </div>
+            <div class="text-center space-y-6 stat-item">
+              <div class="text-7xl md:text-[8rem] font-display font-bold tracking-tighter leading-none text-brand-dark">
+                <span class="counter" data-target="200">12</span>+
+              </div>
+              <p class="text-[0.65rem] uppercase tracking-[0.6em] font-bold text-brand-muted">Food Explorers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFERINGS -->
+    <section id="experiences" class="py-40 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+      <svg class="fine-line-sketch bottom-[-5%] left-[-10%] w-[50%] h-auto opacity-10" viewBox="0 0 100 100">
+          <path d="M0 80 C 20 80, 40 20, 60 20 S 100 80, 100 80" stroke-dasharray="2 4" />
+      </svg>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-32 reveal">
+          <div class="max-w-3xl">
+            <span class="text-brand-muted text-[0.6rem] font-bold uppercase tracking-[0.8em] mb-8 block">03 / CURATED OFFERINGS</span>
+            <h2 class="font-display text-5xl md:text-9xl font-bold leading-none tracking-tighter">Soul Journeys.</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+          <script>
+            const experiencesData = [
+              { id: 'cooking', title: 'Cooking School', img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427', desc: 'Master the alchemy of spices in our family kitchen.' },
+              { id: 'walking', title: 'Culture Tour', img: 'https://images.unsplash.com/photo-1603262110263-fb0110e71329', desc: 'The narrow arteries of the Old City told by those who inhabit them.' },
+              { id: 'rooms', title: 'Heritage Stay', img: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b', desc: 'Stay where generations have lived. lake views and warm hearts.' },
+              { id: 'food_tour', title: 'Street Food Tour', img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836', desc: 'A flavor journey through the city\'s most hidden snack spots.' },
+              { id: 'home_food', title: 'Home Dining', img: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092', desc: 'Join our family table for a genuine home-cooked traditional dinner.' },
+              { id: 'henna', title: 'Mehndi Art', img: 'https://images.unsplash.com/photo-1600688640153-5f60d7efc7b4', desc: 'Meditation through the art of traditional organic henna patterns.' }
+            ];
+
+            document.write(experiencesData.map((item, index) => `
+              <div class="group cursor-pointer reveal stagger-${index % 3}" onclick="openModal('${item.id}')">
+                <div class="heritage-card h-full flex flex-col shadow-sm">
+                  <div class="relative overflow-hidden aspect-[4/5]">
+                    <img src="${item.img}?auto=format&fit=crop&q=80&w=800" class="img-vibrant w-full h-full object-cover" alt="${item.title}">
+                  </div>
+                  <div class="p-10 flex flex-col flex-grow">
+                    <h3 class="font-display text-3xl font-bold text-brand-dark mb-4">${item.title}</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed mb-10">${item.desc}</p>
+                    <div class="mt-auto flex items-center gap-6 text-[0.6rem] font-bold uppercase tracking-[0.3em] text-brand-dark group-hover:gap-10 transition-all duration-700">
+                      View Details <i class="fa-solid fa-arrow-right-long"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `).join(''));
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPUTATION HUB -->
+    <section id="trust-hub" class="py-40 px-6 md:px-12 lg:px-24 bg-[#FAFAFA] border-y border-brand-border">
+      <div class="max-w-6xl mx-auto text-center">
+        <div class="reveal mb-32">
+          <span class="text-brand-muted text-[0.6rem] font-bold uppercase tracking-[0.8em] mb-8 block">04 / REPUTATION</span>
+          <h2 class="font-display text-5xl md:text-8xl font-bold leading-none tracking-tighter">Our Digital Diary.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <a href="https://maps.app.goo.gl/7RDJpck2F8SHujQb8" target="_blank" class="bg-white p-16 rounded-[40px] shadow-sm hover:shadow-xl transition-all group border border-brand-border hover:border-black">
+            <img src="https://www.gstatic.com/images/branding/product/2x/googleg_96dp.png" class="w-14 h-14 mx-auto mb-10 grayscale group-hover:grayscale-0 transition-all duration-500" alt="Google">
+            <h4 class="text-xl font-bold text-brand-dark mb-4">Google</h4>
+            <p class="text-[0.6rem] uppercase tracking-widest font-bold text-brand-muted group-hover:text-brand-dark transition-all">Write Review</p>
+          </a>
+          <a href="https://www.tripadvisor.in/Attraction_Review-g297672-d19444399-Reviews-Meenu_s_Cooking_School-Udaipur_Udaipur_District_Rajasthan.html" target="_blank" class="bg-white p-16 rounded-[40px] shadow-sm hover:shadow-xl transition-all group border border-brand-border hover:border-[#34E0A1]">
+            <i class="fa-brands fa-tripadvisor text-6xl text-brand-muted group-hover:text-[#34E0A1] transition-all duration-500 mb-10"></i>
+            <h4 class="text-xl font-bold text-brand-dark mb-4">TripAdvisor</h4>
+            <p class="text-[0.6rem] uppercase tracking-widest font-bold text-brand-muted group-hover:text-brand-dark transition-all">Share Story</p>
+          </a>
+          <a href="https://jsdl.in/DT-99QEQE2YUIQ" target="_blank" class="bg-white p-16 rounded-[40px] shadow-sm hover:shadow-xl transition-all group border border-brand-border hover:border-black">
+            <div class="w-16 h-16 bg-[#F5F5F7] rounded-full flex items-center justify-center font-bold text-brand-dark text-2xl mx-auto mb-10 group-hover:bg-brand-dark group-hover:text-white transition-all">JD</div>
+            <h4 class="text-xl font-bold text-brand-dark mb-4">Justdial</h4>
+            <p class="text-[0.6rem] uppercase tracking-widest font-bold text-brand-muted group-hover:text-brand-dark transition-all">Local</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONNECT -->
+    <section id="booking" class="py-40 md:py-60 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+      <!-- Tool Sketch -->
+      <svg class="fine-line-sketch top-20 left-[-5%] w-[40%] h-auto opacity-10" viewBox="0 0 100 100">
+        <path d="M20 20 L80 20 L50 80 Z" />
+        <path d="M50 80 L50 95" stroke-dasharray="2 4"/>
+      </svg>
+
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32 relative z-10">
+        <div class="reveal">
+          <span class="text-brand-muted text-[0.6rem] font-bold uppercase tracking-[0.8em] mb-12 block">05 / CONNECTION</span>
+          <h2 class="font-display text-7xl md:text-[10rem] font-bold leading-none mb-20 tracking-tighter">Connect.</h2>
+          <p class="text-xl md:text-3xl text-brand-muted leading-tight mb-20 font-display italic font-light max-w-md">Reach out to our family to weave your Udaipur journey.</p>
+          <a href="https://wa.me/919783786028" target="_blank" class="inline-flex items-center gap-8 btn-stark px-16 py-7 text-[0.75rem] uppercase tracking-widest shadow-2xl">
+            <i class="fa-brands fa-whatsapp text-3xl"></i> WhatsApp Message
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-24 gap-x-12 reveal">
+          <!-- Location -->
+          <div class="space-y-8">
+            <h4 class="text-brand-muted text-[0.65rem] font-bold uppercase tracking-[0.8em]">LOCATION</h4>
+            <a href="https://maps.app.goo.gl/7RDJpck2F8SHujQb8" target="_blank" class="block text-brand-dark text-xl font-bold leading-relaxed hover:opacity-40 transition-all underline decoration-[#E8E8ED] underline-offset-8">
+              9, Brahmpol Rd, Ambamata,<br>Udaipur, Rajasthan 313001
+            </a>
+          </div>
+
+          <!-- Phones -->
+          <div class="space-y-8">
+            <h4 class="text-brand-muted text-[0.65rem] font-bold uppercase tracking-[0.8em]">PHONES</h4>
+            <div class="text-brand-dark text-xl font-bold space-y-4">
+              <a href="https://wa.me/919783786028" target="_blank" class="block hover:opacity-40 transition-all underline decoration-[#E8E8ED] underline-offset-8">+91 97837 86028 (Meenu)</a>
+              <a href="https://wa.me/917231007376" target="_blank" class="block hover:opacity-40 transition-all underline decoration-[#E8E8ED] underline-offset-8">+91 72310 07376 (Harshal)</a>
+            </div>
+          </div>
+
+          <!-- Email & Socials Grid -->
+          <div class="space-y-12 md:col-span-2 border-t border-brand-border pt-16 mt-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <!-- Direct Mail -->
+              <div class="space-y-6">
+                <h4 class="text-brand-muted text-[0.65rem] font-bold uppercase tracking-[0.8em]">DIRECT MAIL</h4>
+                <a href="mailto:meenudaipur@gmail.com" target="_blank" class="block text-brand-dark text-xl md:text-2xl font-display font-bold hover:opacity-40 transition-all break-words underline decoration-[#E8E8ED] underline-offset-8">meenudaipur@gmail.com</a>
+              </div>
+
+              <!-- Social Connectivity -->
+              <div class="space-y-6">
+                <h4 class="text-brand-muted text-[0.65rem] font-bold uppercase tracking-[0.8em]">SOCIAL PRESENCE</h4>
+                <div class="flex flex-col gap-4">
+                   <a href="https://linkedin.com" target="_blank" class="inline-flex items-center gap-4 text-brand-dark text-xl font-bold hover:opacity-40 transition-all group">
+                     <i class="fa-brands fa-linkedin text-2xl"></i>
+                     <span class="underline decoration-[#E8E8ED] underline-offset-8">LinkedIn Legacy</span>
+                   </a>
+                   <a href="https://facebook.com" target="_blank" class="inline-flex items-center gap-4 text-brand-dark text-xl font-bold hover:opacity-40 transition-all group">
+                     <i class="fa-brands fa-facebook text-2xl"></i>
+                     <span class="underline decoration-[#E8E8ED] underline-offset-8">Facebook Circle</span>
+                   </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-24 px-6 border-t border-brand-border text-center">
+      <p class="text-[0.55rem] uppercase tracking-[1em] text-brand-muted font-bold leading-relaxed mb-4">
+        © 2026 MEENU'S UDAIPUR | ESTABLISHED 1995
+      </p>
+      <div class="h-[1px] w-20 bg-brand-border mx-auto"></div>
+    </footer>
+  </main>
+
+  <!-- MODAL -->
+  <div id="expModal" class="fixed inset-0 z-[2000] flex items-center justify-center hidden p-4 sm:p-10">
+    <div class="absolute inset-0 bg-brand-dark/95 backdrop-blur-md transition-opacity" onclick="closeModal()"></div>
+    <div class="relative w-full max-w-5xl bg-white rounded-[40px] shadow-3xl overflow-hidden flex flex-col md:flex-row max-h-[95vh]">
+      <div class="w-full md:w-1/2 bg-[#F5F5F7] h-64 md:h-auto relative flex-shrink-0">
+        <div id="modalGallery" class="flex h-full overflow-x-auto snap-x snap-mandatory no-scrollbar"></div>
+      </div>
+      <div class="w-full md:w-1/2 p-10 md:p-20 overflow-y-auto">
+        <button onclick="closeModal()" class="absolute top-8 right-10 text-4xl text-brand-dark hover:opacity-50">×</button>
+        <div id="modalBody" class="space-y-10"></div>
+        <div class="mt-16 pt-16 border-t border-brand-border flex flex-col gap-6">
+           <a id="wa-link-meenu" href="#" target="_blank" class="btn-stark py-6 text-center text-[0.75rem] uppercase tracking-widest shadow-lg">WhatsApp Meenu</a>
+           <a id="wa-link-harshal" href="#" target="_blank" class="border-2 border-brand-dark py-6 text-center text-[0.75rem] font-bold uppercase tracking-widest hover:bg-brand-dark hover:text-white transition-all">WhatsApp Harshal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu.classList.contains('translate-x-full')) {
+        menu.classList.remove('translate-x-full');
+        document.getElementById('menu-icon').className = 'fa-solid fa-xmark';
+        document.body.style.overflow = 'hidden';
+      } else {
+        menu.classList.add('translate-x-full');
+        document.getElementById('menu-icon').className = 'fa-solid fa-bars-staggered';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openModal(id) {
+      const data = experiences[id];
+      const gallery = document.getElementById('modalGallery');
+      gallery.innerHTML = data.gallery.map(img => `<img src="${img}?auto=format&fit=crop&q=80&w=800" class="h-full w-full object-cover flex-none snap-start">`).join('');
+      document.getElementById('modalBody').innerHTML = `
+        <span class="text-brand-muted font-bold text-[0.75rem] uppercase tracking-[0.8em] mb-4 block">OFFERING</span>
+        <h2 class="font-display text-6xl text-brand-dark font-bold leading-tight tracking-tighter">${data.title}</h2>
+        <p class="text-brand-muted text-xl leading-relaxed font-light">${data.desc}</p>
+      `;
+      const msg = encodeURIComponent("Namaste! I'm interested in " + data.title + " at Meenu's Udaipur.");
+      document.getElementById('wa-link-meenu').href = `https://wa.me/919783786028?text=${msg}`;
+      document.getElementById('wa-link-harshal').href = `https://wa.me/917231007376?text=${msg}`;
+      document.getElementById('expModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() { document.getElementById('expModal').classList.add('hidden'); document.body.style.overflow = ''; }
+
+    function animateCounter(el) {
+      if (el.dataset.started) return;
+      el.dataset.started = "true";
+      const target = parseInt(el.dataset.target);
+      const start = 12; 
+      const duration = 5000; 
+      const startTime = performance.now();
+      
+      el.closest('.stat-item').classList.add('active');
+      
+      function update(t) {
+        const progress = Math.min((t - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 5); 
+        const current = Math.floor(start + (eased * (target - start)));
+        el.innerText = current;
+        
+        if (progress < 1) requestAnimationFrame(update);
+        else el.innerText = target;
+      }
+      requestAnimationFrame(update);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.id === 'stats-section') {
+            document.querySelectorAll('.counter').forEach(animateCounter);
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, #stats-section').forEach(el => observer.observe(el));
+
+    const experiences = {
+      cooking: { title: "Cooking School", gallery: ["https://images.unsplash.com/photo-1590490360182-c33d57733427", "https://images.unsplash.com/photo-1512621776951-a57141f2eefd"], desc: "Master the secret alchemy of spices in Meenu's ancestral kitchen. Over 4000 students have mastered our traditional recipes." },
+      walking: { title: "Culture Tour", gallery: ["https://images.unsplash.com/photo-1603262110263-fb0110e71329", "https://images.unsplash.com/photo-1514222139-b576bb5ce073"], desc: "Skip the tourist trails. Walk the narrow arteries of the Old City to meet real residents and discover the hidden soul of Udaipur with 5000+ walkers." },
+      rooms: { title: "Heritage Stay", gallery: ["https://images.unsplash.com/photo-1582719478250-c89cae4dc85b", "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"], desc: "Stay where generations have lived. Our guest rooms feature traditional high ceilings and rooftops with panoramic lake views." },
+      food_tour: { title: "Street Food Tour", gallery: ["https://images.unsplash.com/photo-1504674900247-0877df9cc836", "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"], desc: "Eat where the locals eat. A flavor journey through hidden snack spots for the city's most famous spicy Mirchi Vada." },
+      home_food: { title: "Home Dining", gallery: ["https://images.unsplash.com/photo-1600891964599-f61ba0e24092", "https://images.unsplash.com/photo-1512621776951-a57141f2eefd"], desc: "Join our family for a genuine home-cooked dinner. No restaurant menus—just fresh, seasonal food prepared for our table." },
+      henna: { title: "Mehndi Art", gallery: ["https://images.unsplash.com/photo-1600688640153-5f60d7efc7b4", "https://images.unsplash.com/photo-1543353071-873f17a7a088"], desc: "Experience the meditative art of traditional Mehndi with natural organic henna. Learn the patterns and cultural meanings." }
+    };
+  </script>
+</body>
+</html>
