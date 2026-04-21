@@ -1,489 +1,709 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    
-    <!-- SEO Optimization -->
-    <title>Meenu's Udaipur | Heritage Cooking Classes & Healing Journeys</title>
-    <meta name="description" content="A premium heritage journey in Udaipur. Authentic Rajasthani cooking classes, culture tours, and stays since 1995. Responsive Apple-style precision." />
-    
-    <!-- External Assets: Clean Sans-Serif (Inter) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-    <!-- Style Engine -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meenu's - Authentic Souls of Udaipur</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            white: '#FFFFFF', // 90% Base
-                            soft: '#FAF9F8', // 10% Tone
-                            text: '#3D1A13', // Deep Dark Red Brown
-                            border: 'rgba(61, 26, 19, 0.08)'
-                        }
-                    },
-                    fontFamily: { 
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
-                    }
-                }
-            }
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --heritage-brown: #4a3728;
+            --heritage-gold: #c5a059;
+            --heritage-deep: #1a120b;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
         }
-    </script>
 
-    <style type="text/css">
-        body { 
-            background-color: #FFFFFF; 
-            color: #3D1A13; 
-            -webkit-font-smoothing: antialiased; 
-            line-height: 1.6;
-            font-family: 'Inter', sans-serif;
-            font-size: 18px; 
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #2c1e14 0%, #4a3728 100%);
+            color: #f8f1e9;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2rem;
+        }
+
+        .dynamic-nav {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-scrolled {
+            background: rgba(44, 30, 20, 0.95);
+            border-color: var(--heritage-gold);
+            height: 3.5rem !important;
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: #2c1e14; /* Fallback */
+        }
+
+        /* Subtle Background Image */
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1590050752117-23a9d7cdee52?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* Transparency level is very low/faint */
+            z-index: 0;
+        }
+
+        /* Gradient to blend image into the page */
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(44, 30, 20, 0.2), rgba(44, 30, 20, 1));
+            z-index: 1;
+        }
+
+        /* Udaipur Mandala Overlay */
+        .mandala-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50m-40 0a40 40 0 1 0 80 0a40 40 0 1 0 -80 0M50 50m-30 0a30 30 0 1 0 60 0a30 30 0 1 0 -60 0M50 20l5 15h15l-12 9l5 15l-13-9l-13 9l5-15l-12-9h15z' fill='none' stroke='%23c5a059' stroke-width='0.5' stroke-opacity='0.15'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .card-zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Timeline Alignment */
+        .timeline-container {
+            border-left: 2px solid var(--glass-border);
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            left: -33px; 
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: var(--heritage-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--heritage-gold);
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        /* Local Soul Gallery Styles */
+        .soul-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            border-radius: 1rem;
+            overflow: hidden;
+            height: 140px;
+        }
+
+        .soul-mini-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .soul-mini-grid img:hover {
+            opacity: 0.8;
+        }
+
+        .local-expansion {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: #2c1e14;
+            z-index: 20;
+            border-radius: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #mobile-menu {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        .paper-texture {
-            position: fixed; inset: 0; pointer-events: none; z-index: 100;
-            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-            opacity: 0.1; mix-blend-mode: multiply;
-        }
-
-        /* The Image Reference Font Style (Connect Font) */
-        .brand-heading {
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        /* Apple Glass Dock */
-        .glass {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(30px) saturate(200%);
-            -webkit-backdrop-filter: blur(30px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 15px 40px -10px rgba(61, 26, 19, 0.1);
-        }
-
-        /* Fine Line Watermarks */
-        .fine-line-sketch {
-            position: absolute; pointer-events: none;
-            stroke: #3D1A13; stroke-width: 0.3; fill: none;
-            opacity: 0.08; z-index: 1;
-        }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* Journey Card Geometry - Height Optimized (75-80%) */
-        .journey-card {
-            background: #FFFFFF;
-            border-radius: 40px;
-            border: 1px solid rgba(61, 26, 19, 0.05);
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            height: 100%;
+        #mobile-menu.active {
             display: flex;
-            flex-direction: column;
-        }
-        .journey-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(61, 26, 19, 0.06);
-            border-color: #3D1A13;
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .img-container { position: relative; overflow: hidden; aspect-ratio: 16/11; }
-        .img-parallax { transition: 1.8s transform cubic-bezier(0.16, 1, 0.3, 1); width: 100%; height: 100%; object-fit: cover; }
-        .journey-card:hover .img-parallax { transform: scale(1.08); }
-
-        .btn-apple {
-            background: #3D1A13;
-            color: #FFFFFF;
-            transition: all 0.3s ease;
-            border-radius: 100px;
-            padding: 16px 32px;
-            font-weight: 700;
+        .mobile-glass-bar {
+            width: 90%;
+            max-width: 400px;
+            padding: 1.25rem;
+            margin-bottom: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-size: 0.7rem;
-            display: inline-block;
-        }
-        .btn-apple:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(61, 26, 19, 0.15); }
-
-        /* Legacy Numbers - Refined Medium Scale */
-        .stat-number {
-            font-size: clamp(2.5rem, 4.5vw, 4.5rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1;
+            font-size: 0.875rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.4s forwards;
         }
 
-        .stat-item { opacity: 0; transform: translateY(15px); transition: all 1.5s ease; }
-        .stat-item.active { opacity: 1; transform: translateY(0); }
-
-        /* Unified Link Hover */
-        .sliding-link { 
-            border-bottom: 1px solid rgba(61, 26, 19, 0.1); 
-            padding-bottom: 4px;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            display: inline-block;
-            width: fit-content;
-        }
-        .sliding-link:hover { 
-            border-bottom-color: #3D1A13;
-            padding-left: 12px;
-            opacity: 0.7;
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
 
-        @media (max-width: 768px) {
-            .btn-apple { width: 100%; text-align: center; }
-            .glass { backdrop-filter: blur(25px); }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        #lang-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            width: 140px;
+            overflow: hidden;
+            z-index: 110;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        #lang-island:hover #lang-dropdown {
+            display: block;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            border: 1px solid var(--heritage-gold);
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            filter: sepia(0.3) contrast(1.1);
+        }
+
+        .connect-glow {
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.05);
         }
     </style>
 </head>
-<body class="selection:bg-brand-text selection:text-white overflow-x-hidden">
+<body>
 
-    <div class="paper-texture"></div>
-
-    <!-- RESPONSIVE NAVIGATION DOCK (TOP) -->
-    <nav id="main-nav" class="fixed top-6 inset-x-0 z-[1000] flex justify-center px-4">
-        <div class="glass h-14 md:h-16 px-6 md:px-10 rounded-full flex items-center justify-between md:justify-start gap-4 md:gap-12 w-full max-w-lg md:max-w-none md:w-auto">
-            <a href="#hero" class="brand-heading text-base md:text-lg pt-1">Meenu's</a>
-            
-            <!-- Desktop Links -->
-            <div class="hidden md:flex gap-8">
-                <a href="#about" class="text-[0.6rem] brand-heading opacity-40 hover:opacity-100 transition-opacity">Narrative</a>
-                <a href="#stats-section" class="text-[0.6rem] brand-heading opacity-40 hover:opacity-100 transition-opacity">Legacy</a>
-                <a href="#experiences" class="text-[0.6rem] brand-heading opacity-40 hover:opacity-100 transition-opacity">Journeys</a>
-                <a href="#booking" class="text-[0.6rem] brand-heading opacity-40 hover:opacity-100 transition-opacity">Connect</a>
-            </div>
-
-            <!-- Mobile Action Hub -->
-            <div class="flex items-center gap-4 md:hidden">
-                <a href="https://wa.me/919783786028" class="text-[0.55rem] brand-heading pt-1">Book</a>
-                <button onclick="toggleMobileMenu()" class="text-brand-text text-xl pt-1"><i id="menu-icon" class="fa-solid fa-bars-staggered"></i></button>
-            </div>
-
-            <div class="h-6 w-[1px] bg-brand-text/10 hidden md:block"></div>
-            <a href="https://wa.me/919783786028" target="_blank" class="hidden md:block text-[0.6rem] brand-heading text-brand-text hover:opacity-50 transition-opacity">WhatsApp</a>
-        </div>
-    </nav>
-
-    <!-- MOBILE FULLSCREEN OVERLAY -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-3xl z-[1005] flex flex-col items-center justify-center space-y-10 translate-x-full transition-transform duration-700 ease-in-out p-10 lg:hidden">
-        <a href="#about" onclick="toggleMobileMenu()" class="text-2xl md:text-3xl brand-heading">Narrative</a>
-        <a href="#stats-section" onclick="toggleMobileMenu()" class="text-2xl md:text-3xl brand-heading">Legacy</a>
-        <a href="#experiences" onclick="toggleMobileMenu()" class="text-2xl md:text-3xl brand-heading">Journeys</a>
-        <a href="#booking" onclick="toggleMobileMenu()" class="text-2xl md:text-3xl brand-heading">Connect</a>
-        <button onclick="toggleMobileMenu()" class="text-brand-muted text-[0.7rem] brand-heading pt-12">Close Navigation</button>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <main id="main-content" class="w-full">
-        
-        <!-- HERO SECTION -->
-        <section id="hero" class="min-h-screen flex items-center relative overflow-hidden bg-white px-6 md:px-12 lg:px-24 pt-24">
-            <svg class="fine-line-sketch top-10 right-[-10%] w-[85%] md:w-[65%] h-auto opacity-10" viewBox="0 0 200 240">
-                <path d="M20 240 V100 Q100 20 180 100 V240" stroke-dasharray="3 8"/>
-                <circle cx="100" cy="170" r="25" stroke-dasharray="2 4"/>
-            </svg>
-
-            <div class="container mx-auto max-w-screen-2xl relative z-10">
-                <div class="mb-10 md:mb-20 reveal">
-                    <span class="inline-block h-[1.5px] w-10 md:w-14 bg-brand-text align-middle mr-4 md:mr-8"></span>
-                    <h2 class="inline text-[0.65rem] md:text-sm brand-heading">Heritage Living Since 1995</h2>
-                </div>
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-[100] p-4 md:p-6 pointer-events-none">
+        <div class="max-w-7xl mx-auto flex flex-row items-center gap-2 md:gap-4 h-full">
+            <nav id="navbar" class="dynamic-nav glass flex-1 md:flex-[9] h-14 md:h-16 px-4 md:px-8 flex items-center justify-between lg:justify-start gap-4 md:gap-8 pointer-events-auto shadow-2xl overflow-hidden">
+                <a href="#" class="text-lg md:text-xl font-bold tracking-tighter text-[var(--heritage-gold)] shrink-0 uppercase">MEENU'S</a>
                 
-                <h1 class="text-brand-text mb-12 md:mb-24 font-extrabold leading-[1.1] md:leading-[0.95] tracking-tighter" style="font-size: clamp(2.5rem, 8.5vw, 8.5rem);">
-                    <span class="opacity-20 block mb-2 md:mb-4 font-medium italic lowercase">the authentic soul of</span>
-                    <span class="block">MEENU'S UDAIPUR</span>
-                </h1>
-
-                <div class="flex flex-col lg:flex-row items-start gap-10 lg:gap-32 reveal stagger-2">
-                    <a href="#experiences" class="btn-apple shadow-xl whitespace-nowrap">
-                        See Our Offerings
-                    </a>
-                    <div class="max-w-lg">
-                        <p class="text-brand-text opacity-60 text-lg md:text-2xl font-light tracking-tight mb-8">
-                            A living narrative of family, spice, and heritage. Preserving three generations of wholesome cultural discovery.
-                        </p>
-                        <div class="h-[1.5px] w-16 md:w-24 bg-brand-text opacity-10"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- THE NARRATIVE -->
-        <section id="about" class="py-24 md:py-48 relative bg-brand-soft">
-            <div class="container mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-24">
-                <div class="max-w-6xl reveal">
-                    <span class="text-[0.65rem] md:text-[0.7rem] brand-heading opacity-40 mb-10 block">01 / THE NARRATIVE</span>
-                    <h2 class="font-extrabold leading-[1.2] md:leading-[1.1] tracking-tighter mb-12 brand-heading" style="font-size: clamp(2.2rem, 5.5vw, 4.5rem);">Udaipur as it is lived.</h2>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-                        <p class="text-xl md:text-3xl font-light leading-[1.3] opacity-50 italic">
-                            Beyond marble palaces lies a city of spice and ancient secrets.
-                        </p>
-                        <div class="space-y-8">
-                            <p class="text-lg md:text-xl font-medium leading-relaxed opacity-70">
-                                Since 1995, our family has opened our home to those seeking a true healing connection with Rajasthan. We invite you into our lineage—where every spice is family and every walk is history.
-                            </p>
-                            <div class="h-[1px] w-20 md:w-24 bg-brand-text opacity-20"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- LEGACY STATS -->
-        <section id="stats-section" class="py-20 md:py-32 relative bg-white px-6 md:px-12 lg:px-24">
-            <div class="container mx-auto max-w-screen-2xl">
-                <div class="mb-12 reveal text-center lg:text-left">
-                    <span class="text-[0.65rem] md:text-[0.7rem] brand-heading opacity-40 mb-6 block">02 / THE LEGACY</span>
-                    <h3 class="font-bold tracking-tighter brand-heading" style="font-size: clamp(1.6rem, 3.5vw, 2.8rem);">A generation of souls met.</h3>
+                <div class="hidden lg:flex items-center gap-6 text-xs md:text-sm font-medium">
+                    <a href="#home" class="hover:text-[var(--heritage-gold)] transition" data-t="nav_home">Home</a>
+                    <a href="#journey" class="hover:text-[var(--heritage-gold)] transition" data-t="nav_journey">Our Journey</a>
+                    <a href="#experiences" class="hover:text-[var(--heritage-gold)] transition" data-t="nav_exp">Experiences</a>
+                    <a href="#stats" class="hover:text-[var(--heritage-gold)] transition" data-t="nav_community">Soul Gallery</a>
+                    <a href="#contact" class="hover:text-[var(--heritage-gold)] transition" data-t="nav_contact">Contact</a>
                 </div>
 
-                <div class="glass p-10 md:p-16 lg:p-20 rounded-[40px] md:rounded-[80px] reveal border border-brand-border">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-16 gap-x-12">
-                        <div class="text-center space-y-2 stat-item">
-                            <div class="stat-number">
-                                <span class="counter" data-target="4000">12</span>+
-                            </div>
-                            <p class="text-[0.6rem] md:text-[0.65rem] brand-heading opacity-40">Cooking Alumni</p>
-                        </div>
-                        <div class="text-center space-y-2 stat-item">
-                            <div class="stat-number">
-                                <span class="counter" data-target="5000">12</span>+
-                            </div>
-                            <p class="text-[0.6rem] md:text-[0.65rem] brand-heading opacity-40">Culture Walkers</p>
-                        </div>
-                        <div class="text-center space-y-2 stat-item">
-                            <div class="stat-number">
-                                <span class="counter" data-target="800">12</span>+
-                            </div>
-                            <p class="text-[0.6rem] md:text-[0.65rem] brand-heading opacity-40">Dining Guests</p>
-                        </div>
-                        <div class="text-center space-y-2 stat-item">
-                            <div class="stat-number">
-                                <span class="counter" data-target="600">12</span>+
-                            </div>
-                            <p class="text-[0.6rem] md:text-[0.65rem] brand-heading opacity-40">Mehndi Designs</p>
-                        </div>
-                        <div class="text-center space-y-2 stat-item">
-                            <div class="stat-number">
-                                <span class="counter" data-target="300">12</span>+
-                            </div>
-                            <p class="text-[0.6rem] md:text-[0.65rem] brand-heading opacity-40">Homestay Stays</p>
-                        </div>
-                        <div class="text-center space-y-2 stat-item">
-                            <div class="stat-number">
-                                <span class="counter" data-target="200">12</span>+
-                            </div>
-                            <p class="text-[0.6rem] md:text-[0.65rem] brand-heading opacity-40">Food Explorers</p>
-                        </div>
-                    </div>
+                <div class="lg:hidden shrink-0">
+                    <button id="menu-toggle-btn" class="p-2 text-xl focus:outline-none transition-transform" onclick="toggleMobileMenu()">
+                        <span id="menu-icon">☰</span>
+                    </button>
                 </div>
-            </div>
-        </section>
+            </nav>
 
-        <!-- THE SIX SOUL JOURNEYS (Optimized Heights) -->
-        <section id="experiences" class="py-20 md:py-32 relative bg-white px-6 md:px-12 lg:px-24">
-            <div class="container mx-auto max-w-screen-2xl">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 reveal">
-                    <div class="max-w-4xl">
-                        <span class="text-[0.7rem] md:text-[0.75rem] brand-heading opacity-40 mb-6 block">03 / SOUL JOURNEYS</span>
-                        <h2 class="font-extrabold brand-heading leading-[1.1]" style="font-size: clamp(2.2rem, 6vw, 4.5rem);">Curated Gifts.</h2>
-                    </div>
+            <div id="lang-island" class="relative dynamic-nav glass w-14 md:w-auto md:flex-1 h-14 md:h-16 flex items-center justify-center pointer-events-auto shadow-2xl cursor-pointer shrink-0">
+                <div class="flex items-center gap-1 text-[10px] md:text-xs font-bold tracking-widest">
+                    <span class="text-sm">🌐</span>
+                    <span id="current-lang-code" class="hidden md:inline">EN</span>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                    <script>
-                        const journeys = [
-                            { id: 'cooking', title: 'Cooking Classes', desc: 'Master the secret alchemy of spices in Meenu\'s ancestral family kitchen.' },
-                            { id: 'walking', title: 'Culture Tour', desc: 'Discover the living history and artisan lineages of the Old City with local walkers.' },
-                            { id: 'rooms', title: 'Heritage Rooms', desc: 'Stay where generations have lived. Traditional guest rooms with panoramic Lake views.' },
-                            { id: 'food_tour', title: 'Local Food Tour', desc: 'Eat where the residents eat. Find the city\'s hidden Mirchi Vada flavor spots.' },
-                            { id: 'home_food', title: 'Live Home Food', desc: 'No menus, just family. Join us for a genuine home-cooked Rajasthani dinner.' },
-                            { id: 'henna', title: 'Henna Art Making', desc: 'Experience the meditative art of traditional Mehndi with organic natural henna.' }
-                        ];
-
-                        document.write(journeys.map((j, i) => `
-                            <article class="journey-card group cursor-pointer reveal" onclick="openModal('${j.id}')">
-                                <div class="img-container">
-                                    <img src="images/${j.id}.jpg" class="img-parallax" alt="${j.title}" onerror="this.src='https://images.unsplash.com/photo-1543353071-873f17a7a088'">
-                                </div>
-                                <div class="p-6 md:p-8 flex flex-col flex-grow">
-                                    <h3 class="text-xl md:text-2xl font-extrabold brand-heading mb-3 tracking-tight">${j.title}</h3>
-                                    <p class="opacity-60 text-base md:text-[1rem] font-light leading-snug mb-6">${j.desc}</p>
-                                    <div class="mt-auto flex items-center gap-4 text-[0.65rem] brand-heading text-brand-text group-hover:gap-8 transition-all duration-700">
-                                        Discover <i class="fa-solid fa-arrow-right-long"></i>
-                                    </div>
-                                </div>
-                            </article>
-                        `).join(''));
-                    </script>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONNECTION SECTION (Corrected Detail Sizing) -->
-        <section id="booking" class="py-24 md:py-48 relative bg-white px-6 md:px-12 lg:px-24">
-            <div class="container mx-auto max-w-screen-2xl">
-                <div class="mb-16 md:mb-24 reveal text-center lg:text-left">
-                    <span class="text-[0.75rem] md:text-[0.9rem] brand-heading opacity-30 mb-8 block">04 / CONNECTION</span>
-                    <h2 class="font-extrabold brand-heading leading-[1.1] tracking-tighter mb-12" style="font-size: clamp(2.5rem, 7vw, 6rem);">Connect.</h2>
-                    <p class="text-xl md:text-3xl lg:text-4xl font-light leading-[1.3] max-w-4xl opacity-60 italic">Every story begins with a conversation. We look forward to beginning yours.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 reveal border-t border-brand-text/10 pt-16 md:pt-20">
-                    <div class="space-y-12 md:space-y-20">
-                        <!-- Location - Standardized Medium Scale -->
-                        <div class="space-y-6">
-                            <h4 class="text-[0.85rem] md:text-[0.9rem] brand-heading opacity-50">LOCATION</h4>
-                            <a href="https://maps.app.goo.gl/7RDJpck2F8SHujQb8" target="_blank" class="sliding-link text-xl md:text-2xl font-bold brand-heading leading-tight">
-                                9, Brahmpol Rd, Ambamata, Udaipur
-                            </a>
-                        </div>
-                        <!-- Voice - Standardized Medium Scale -->
-                        <div class="space-y-6">
-                            <h4 class="text-[0.85rem] md:text-[0.9rem] brand-heading opacity-50">VOICE</h4>
-                            <div class="flex flex-col gap-4">
-                                <a href="https://wa.me/919783786028" target="_blank" class="sliding-link text-xl md:text-2xl font-bold brand-heading">+91 97837 86028</a>
-                                <a href="https://wa.me/917231007376" target="_blank" class="sliding-link text-xl md:text-2xl font-bold brand-heading">+91 72310 07376</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-12 md:space-y-20">
-                        <!-- Direct Mail - Comfortable Medium-Large -->
-                        <div class="space-y-6">
-                            <h4 class="text-[0.85rem] md:text-[0.9rem] brand-heading opacity-50">DIRECT MAIL</h4>
-                            <a href="mailto:meenudaipur@gmail.com" class="sliding-link text-2xl md:text-4xl font-bold brand-heading break-all leading-tight">meenudaipur@gmail.com</a>
-                        </div>
-                        <!-- Social Legacy - Matching Medium Scale -->
-                        <div class="space-y-8 md:space-y-10">
-                            <h4 class="text-[0.85rem] md:text-[0.9rem] brand-heading opacity-50">SOCIAL LEGACY</h4>
-                            <div class="flex flex-col items-start gap-4 md:gap-6">
-                                <a href="https://instagram.com" target="_blank" class="sliding-link text-xl md:text-2xl font-bold brand-heading">Instagram</a>
-                                <a href="https://facebook.com" target="_blank" class="sliding-link text-xl md:text-2xl font-bold brand-heading">Facebook</a>
-                                <a href="https://linkedin.com" target="_blank" class="sliding-link text-xl md:text-2xl font-bold brand-heading">LinkedIn</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="py-20 md:py-32 px-6 text-center border-t border-brand-border">
-            <p class="text-[0.6rem] md:text-[0.65rem] brand-heading opacity-30 leading-relaxed">
-                © 2026 MEENU'S UDAIPUR | ESTABLISHED 1995
-            </p>
-        </footer>
-    </main>
-
-    <!-- EXPERIENCE MODAL -->
-    <div id="expModal" class="fixed inset-0 z-[2000] flex items-center justify-center hidden p-4 md:p-10">
-        <div class="absolute inset-0 bg-brand-text/98 backdrop-blur-3xl transition-opacity" onclick="closeModal()"></div>
-        <div class="relative w-full max-w-5xl bg-white rounded-[40px] md:rounded-[60px] shadow-3xl overflow-hidden flex flex-col md:flex-row max-h-[92vh]">
-            <div class="w-full md:w-1/2 bg-brand-soft h-64 md:h-auto relative flex-shrink-0">
-                <div id="modalGallery" class="flex h-full overflow-x-auto snap-x snap-mandatory no-scrollbar"></div>
-            </div>
-            <div class="w-full md:w-1/2 p-8 md:p-16 lg:p-20 overflow-y-auto relative">
-                <button onclick="closeModal()" class="absolute top-6 right-6 md:top-8 md:right-8 text-3xl text-brand-text opacity-50 hover:opacity-100 transition-opacity">×</button>
-                <div id="modalBody" class="space-y-6 md:space-y-10"></div>
-                <div class="mt-10 md:mt-16 pt-10 md:pt-16 border-t border-brand-border flex flex-col gap-4 md:gap-6">
-                    <a id="wa-link-meenu" href="#" target="_blank" class="btn-apple text-center shadow-xl">WhatsApp Meenu</a>
-                    <a id="wa-link-harshal" href="#" target="_blank" class="border-2 border-brand-dark py-4 md:py-5 text-center text-[0.65rem] md:text-[0.75rem] font-bold brand-heading hover:bg-brand-dark hover:text-white transition-all rounded-full">WhatsApp Harshal</a>
+                <div id="lang-dropdown" class="glass p-2 space-y-1">
+                    <button onclick="changeLang('en')" class="w-full text-left px-3 py-2 hover:bg-white/10 rounded-xl transition text-[10px] flex justify-between uppercase">English <span class="lang-check hidden" id="check-en">✓</span></button>
+                    <button onclick="changeLang('de')" class="w-full text-left px-3 py-2 hover:bg-white/10 rounded-xl transition text-[10px] flex justify-between uppercase">Deutsch <span class="lang-check hidden" id="check-de">✓</span></button>
+                    <button onclick="changeLang('fr')" class="w-full text-left px-3 py-2 hover:bg-white/10 rounded-xl transition text-[10px] flex justify-between uppercase">Français <span class="lang-check hidden" id="check-fr">✓</span></button>
+                    <button onclick="changeLang('es')" class="w-full text-left px-3 py-2 hover:bg-white/10 rounded-xl transition text-[10px] flex justify-between uppercase">Español <span class="lang-check hidden" id="check-es">✓</span></button>
                 </div>
             </div>
         </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/60 backdrop-blur-md z-[150] flex-col items-center justify-center pointer-events-none">
+        <a href="#home" onclick="toggleMobileMenu()" class="mobile-glass-bar glass" style="animation-delay: 0.1s;" data-t="nav_home">Home</a>
+        <a href="#journey" onclick="toggleMobileMenu()" class="mobile-glass-bar glass" style="animation-delay: 0.2s;" data-t="nav_journey">Our Journey</a>
+        <a href="#experiences" onclick="toggleMobileMenu()" class="mobile-glass-bar glass" style="animation-delay: 0.3s;" data-t="nav_exp">Experiences</a>
+        <a href="#stats" onclick="toggleMobileMenu()" class="mobile-glass-bar glass" style="animation-delay: 0.4s;" data-t="nav_community">Soul Gallery</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="mobile-glass-bar glass" style="animation-delay: 0.5s;" data-t="nav_contact">Contact</a>
     </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section px-4">
+        <!-- Background Layers -->
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-vignette"></div>
+        <div class="mandala-bg"></div>
+        
+        <!-- Content -->
+        <div class="max-w-5xl space-y-8 relative z-10">
+            <h1 class="text-7xl md:text-9xl font-serif leading-tight text-[var(--heritage-gold)] drop-shadow-2xl">Meenu's</h1>
+            <p class="text-lg md:text-2xl font-light tracking-wide opacity-90 max-w-3xl mx-auto leading-relaxed" data-t="hero_sub">
+                Established in 1995. Formerly known as Meenu's Queen's Cafe and Restaurant, run by Meenu, her mother, and Family.
+            </p>
+            <div class="pt-8">
+                <a href="#experiences" class="bg-[var(--heritage-gold)] text-[var(--heritage-brown)] px-10 py-4 rounded-full font-bold text-lg hover:bg-white transition-all transform hover:scale-105 inline-block shadow-xl" data-t="hero_btn">
+                    Explore Experiences
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meenu's Journey -->
+    <section id="journey" class="py-24 px-6 md:px-20 bg-[#2c1e14]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Dual Images: Old and New -->
+                <div class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-4 md:h-[600px]">
+                        <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-2 border-[var(--glass-border)] group aspect-[3/4] md:aspect-auto">
+                            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop" alt="Queen's Cafe 1995" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                            <div class="absolute top-6 left-6 glass px-4 py-1 text-[10px] font-bold tracking-widest uppercase">Since 1995</div>
+                            <div class="absolute bottom-6 left-6">
+                                <h3 class="text-xl font-serif text-[var(--heritage-gold)]">Queen's Cafe</h3>
+                                <p class="text-[10px] opacity-70 uppercase tracking-widest">Where it all began</p>
+                            </div>
+                        </div>
+                        <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-2 border-[var(--glass-border)] group aspect-[3/4] md:aspect-auto">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80" alt="Meenu's New Place 2026" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                            <div class="absolute top-6 left-6 glass px-4 py-1 text-[10px] font-bold tracking-widest uppercase">Today & 2026</div>
+                            <div class="absolute bottom-6 left-6">
+                                <h3 class="text-xl font-serif text-[var(--heritage-gold)]">Meenu's Place</h3>
+                                <p class="text-[10px] opacity-70 uppercase tracking-widest">The Soul of Udaipur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass p-8 text-center italic text-[var(--heritage-gold)] font-serif text-xl md:text-2xl leading-relaxed">
+                        <span data-t="journey_quote">"Cooking is the soul's way of showing love."</span>
+                        <p class="mt-2 text-sm not-italic font-sans text-white/60 tracking-widest uppercase" data-t="journey_author">— Meenakshi (Meenu)</p>
+                    </div>
+                </div>
+
+                <div class="space-y-10 pt-4">
+                    <h2 class="text-3xl md:text-5xl font-serif leading-tight" data-t="journey_title">The journey of meenu and her Family. from 1995 to 2026</h2>
+                    <div class="timeline-container space-y-10 ml-4 pl-8 relative text-sm md:text-base">
+                        <div class="timeline-dot relative">
+                            <h4 class="font-bold text-[var(--heritage-gold)] uppercase tracking-wider" data-t="t1_year">1995: The Genesis</h4>
+                            <p class="opacity-80 leading-relaxed" data-t="t1_desc">Meenu and her family start the legendary Queen's Cafe in Udaipur. Famed for its Pumpkin Curry, Banana Curry, and Kashmiri Pulao.</p>
+                        </div>
+                        <div class="timeline-dot relative">
+                            <h4 class="font-bold text-[var(--heritage-gold)] uppercase tracking-wider" data-t="t2_year">2007: Sharing the Art</h4>
+                            <p class="opacity-80 leading-relaxed" data-t="t2_desc">Meenu's Cooking Classes began, teaching the true foundation of Indian spices and home-style techniques.</p>
+                        </div>
+                        <div class="timeline-dot relative">
+                            <h4 class="font-bold text-[var(--heritage-gold)] uppercase tracking-wider" data-t="t3_year">2010 - 2020: The Hiatus</h4>
+                            <p class="opacity-80 leading-relaxed" data-t="t3_desc">The restaurant doors closed, but the spirit stayed alive through intimate food gatherings and constant passion.</p>
+                        </div>
+                        <div class="timeline-dot relative">
+                            <h4 class="font-bold text-[var(--heritage-gold)] uppercase tracking-wider" data-t="t4_year">2015: Culture Walks</h4>
+                            <p class="opacity-80 leading-relaxed" data-t="t4_desc">Started Authentic Walking Tours—focusing not just on stones and history, but on the lifestyle and culture of the locals.</p>
+                        </div>
+                        <div class="timeline-dot relative">
+                            <h4 class="font-bold text-[var(--heritage-gold)] uppercase tracking-wider" data-t="t5_year">2024-2026: The Vision</h4>
+                            <p class="opacity-80 leading-relaxed" data-t="t5_desc">Relaunched with Homy Rooms and Local Food Tours. A complete immersion into Udaipur's soul for the new era.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section id="experiences" class="py-24 px-6 md:px-20 bg-gradient-to-b from-[#2c1e14] to-[#3d2a1c]">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="text-4xl md:text-6xl font-serif mb-6" data-t="exp_title">Authentic Souls of Meenu's</h2>
+            <p class="text-xl opacity-70" data-t="exp_sub">Curated with love by Meenu and her family.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div onclick="openModal('cooking')" class="glass card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-2">
+                <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1505935428862-770b6f24f629?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-serif mb-3 text-[var(--heritage-gold)]" data-t="e1_title">Meenu's Cooking Classes</h3>
+                    <p class="text-sm opacity-80 line-clamp-2" data-t="e1_desc">Learn the base of cooking Indian food.</p>
+                    <div class="mt-6 flex items-center justify-between"><span class="text-xs font-bold uppercase" data-t="learn_more">Learn More</span><div class="w-8 h-8 rounded-full border border-[var(--heritage-gold)] flex items-center justify-center">→</div></div>
+                </div>
+            </div>
+            <div onclick="openModal('walking')" class="glass card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-2">
+                <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1610482298512-6c1183f40c84?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-serif mb-3 text-[var(--heritage-gold)]" data-t="e2_title">Walking Culture Tour</h3>
+                    <p class="text-sm opacity-80 line-clamp-2" data-t="e2_desc">Authentic Walking tour with not just history but the lifestyle, and culture.</p>
+                    <div class="mt-6 flex items-center justify-between"><span class="text-xs font-bold uppercase" data-t="learn_more">Learn More</span><div class="w-8 h-8 rounded-full border border-[var(--heritage-gold)] flex items-center justify-center">→</div></div>
+                </div>
+            </div>
+            <div onclick="openModal('rooms')" class="glass card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-2">
+                <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1590073844006-33379778ae09?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-serif mb-3 text-[var(--heritage-gold)]" data-t="e3_title">Homy Rooms Available</h3>
+                    <p class="text-sm opacity-80 line-clamp-2" data-t="e3_desc">2 rooms with attached lat bath attached with proper ventilation clean and spacious.</p>
+                    <div class="mt-6 flex items-center justify-between"><span class="text-xs font-bold uppercase" data-t="learn_more">Learn More</span><div class="w-8 h-8 rounded-full border border-[var(--heritage-gold)] flex items-center justify-center">→</div></div>
+                </div>
+            </div>
+            <div onclick="openModal('foodtour')" class="glass card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-2">
+                <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1596797038583-1c19d42fe19e?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-serif mb-3 text-[var(--heritage-gold)]" data-t="e4_title">Local Food Tour</h3>
+                    <p class="text-sm opacity-80 line-clamp-2" data-t="e4_desc">Started new: where you explore Local food and appetite.</p>
+                    <div class="mt-6 flex items-center justify-between"><span class="text-xs font-bold uppercase" data-t="learn_more">Learn More</span><div class="w-8 h-8 rounded-full border border-[var(--heritage-gold)] flex items-center justify-center">→</div></div>
+                </div>
+            </div>
+            <div onclick="openModal('homefood')" class="glass card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-2">
+                <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1589187151032-573a91317445?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-serif mb-3 text-[var(--heritage-gold)]" data-t="e5_title">In Kitchen Home Food</h3>
+                    <p class="text-sm opacity-80 line-clamp-2" data-t="e5_desc">Food that is made in home in front of you that you it being feel of home.</p>
+                    <div class="mt-6 flex items-center justify-between"><span class="text-xs font-bold uppercase" data-t="learn_more">Learn More</span><div class="w-8 h-8 rounded-full border border-[var(--heritage-gold)] flex items-center justify-center">→</div></div>
+                </div>
+            </div>
+            <div onclick="openModal('henna')" class="glass card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-2">
+                <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1616147426647-750c18447814?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-serif mb-3 text-[var(--heritage-gold)]" data-t="e6_title">Mehendi Henna Making</h3>
+                    <p class="text-sm opacity-80 line-clamp-2" data-t="e6_desc">Designs made by Meenu and her sweet daughter with nice customised designs.</p>
+                    <div class="mt-6 flex items-center justify-between"><span class="text-xs font-bold uppercase" data-t="learn_more">Learn More</span><div class="w-8 h-8 rounded-full border border-[var(--heritage-gold)] flex items-center justify-center">→</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soul Gallery -->
+    <section id="stats" class="py-24 px-6 md:px-20 bg-[#2c1e14]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif mb-4" data-t="soul_gallery_title">Moments of Our 6 Souls</h2>
+                <div class="w-24 h-1 bg-[var(--heritage-gold)] mx-auto opacity-50"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Gallery Box Logic -->
+                <div class="glass p-6 space-y-4 text-center relative overflow-hidden group connect-glow">
+                    <div><div class="text-3xl md:text-4xl font-serif text-[var(--heritage-gold)]" data-t="tourist_count">1000+ Tourists</div><h4 class="text-xs tracking-widest uppercase opacity-60 mt-1" data-t="e1_title">Cooking Classes</h4></div>
+                    <div class="relative"><div class="soul-mini-grid">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1512058560366-cd2429bb5c63?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1495195129352-aec32977057e?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1505935428862-770b6f24f629?w=300" onclick="openLocalGallery(this)">
+                    </div><div class="local-expansion"><button onclick="closeLocalGallery(this)" class="absolute top-2 right-2 text-2xl text-white z-30 drop-shadow-lg bg-black/20 w-8 h-8 rounded-full leading-none">×</button><img src="" class="w-full h-full object-cover rounded-xl shadow-2xl"></div></div>
+                </div>
+                <!-- Box 2 -->
+                <div class="glass p-6 space-y-4 text-center relative overflow-hidden group connect-glow">
+                    <div><div class="text-3xl md:text-4xl font-serif text-[var(--heritage-gold)]" data-t="tourist_count">1000+ Tourists</div><h4 class="text-xs tracking-widest uppercase opacity-60 mt-1" data-t="e2_title">Walking Tour</h4></div>
+                    <div class="relative"><div class="soul-mini-grid">
+                        <img src="https://images.unsplash.com/photo-1610482298512-6c1183f40c84?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1585123334904-845d60e97b29?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&q=80&w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1524230507669-5ff97982bb5e?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1598890777032-bde13fba5ad5?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?w=300" onclick="openLocalGallery(this)">
+                    </div><div class="local-expansion"><button onclick="closeLocalGallery(this)" class="absolute top-2 right-2 text-2xl text-white z-30 drop-shadow-lg bg-black/20 w-8 h-8 rounded-full leading-none">×</button><img src="" class="w-full h-full object-cover rounded-xl shadow-2xl"></div></div>
+                </div>
+                <!-- Box 3 -->
+                <div class="glass p-6 space-y-4 text-center relative overflow-hidden group connect-glow">
+                    <div><div class="text-3xl md:text-4xl font-serif text-[var(--heritage-gold)]" data-t="tourist_count">1000+ Tourists</div><h4 class="text-xs tracking-widest uppercase opacity-60 mt-1" data-t="e3_title">Homy Rooms</h4></div>
+                    <div class="relative"><div class="soul-mini-grid">
+                        <img src="https://images.unsplash.com/photo-1590073844006-33379778ae09?auto=format&fit=crop&q=80&w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=300" onclick="openLocalGallery(this)">
+                    </div><div class="local-expansion"><button onclick="closeLocalGallery(this)" class="absolute top-2 right-2 text-2xl text-white z-30 drop-shadow-lg bg-black/20 w-8 h-8 rounded-full leading-none">×</button><img src="" class="w-full h-full object-cover rounded-xl shadow-2xl"></div></div>
+                </div>
+                <!-- Box 4 -->
+                <div class="glass p-6 space-y-4 text-center relative overflow-hidden group connect-glow">
+                    <div><div class="text-3xl md:text-4xl font-serif text-[var(--heritage-gold)]" data-t="tourist_count">1000+ Tourists</div><h4 class="text-xs tracking-widest uppercase opacity-60 mt-1" data-t="e4_title">Food Tour</h4></div>
+                    <div class="relative"><div class="soul-mini-grid">
+                        <img src="https://images.unsplash.com/photo-1596797038583-1c19d42fe19e?auto=format&fit=crop&q=80&w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1626777552726-4a6b52c67ebf?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1505253501701-367bb65f5df7?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=300" onclick="openLocalGallery(this)">
+                    </div><div class="local-expansion"><button onclick="closeLocalGallery(this)" class="absolute top-2 right-2 text-2xl text-white z-30 drop-shadow-lg bg-black/20 w-8 h-8 rounded-full leading-none">×</button><img src="" class="w-full h-full object-cover rounded-xl shadow-2xl"></div></div>
+                </div>
+                <!-- Box 5 -->
+                <div class="glass p-6 space-y-4 text-center relative overflow-hidden group connect-glow">
+                    <div><div class="text-3xl md:text-4xl font-serif text-[var(--heritage-gold)]" data-t="tourist_count">1000+ Tourists</div><h4 class="text-xs tracking-widest uppercase opacity-60 mt-1" data-t="e5_title">In Kitchen Home Food</h4></div>
+                    <div class="relative"><div class="soul-mini-grid">
+                        <img src="https://images.unsplash.com/photo-1589187151032-573a91317445?auto=format&fit=crop&q=80&w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1512485600893-b08ec1d59f1c?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1610135949347-195c123aa43e?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1599307734110-34076f82715a?w=300" onclick="openLocalGallery(this)">
+                    </div><div class="local-expansion"><button onclick="closeLocalGallery(this)" class="absolute top-2 right-2 text-2xl text-white z-30 drop-shadow-lg bg-black/20 w-8 h-8 rounded-full leading-none">×</button><img src="" class="w-full h-full object-cover rounded-xl shadow-2xl"></div></div>
+                </div>
+                <!-- Box 6 -->
+                <div class="glass p-6 space-y-4 text-center relative overflow-hidden group connect-glow">
+                    <div><div class="text-3xl md:text-4xl font-serif text-[var(--heritage-gold)]" data-t="tourist_count">1000+ Tourists</div><h4 class="text-xs tracking-widest uppercase opacity-60 mt-1" data-t="e6_title">Henna Making</h4></div>
+                    <div class="relative"><div class="soul-mini-grid">
+                        <img src="https://images.unsplash.com/photo-1616147426647-750c18447814?auto=format&fit=crop&q=80&w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1542452255191-c85a98f2c5d1?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1616147426367-17eb910604fc?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1616147426436-1e6a986699a2?w=300" onclick="openLocalGallery(this)"><img src="https://images.unsplash.com/photo-1616147425624-91f9b3b8433d?w=300" onclick="openLocalGallery(this)">
+                    </div><div class="local-expansion"><button onclick="closeLocalGallery(this)" class="absolute top-2 right-2 text-2xl text-white z-30 drop-shadow-lg bg-black/20 w-8 h-8 rounded-full leading-none">×</button><img src="" class="w-full h-full object-cover rounded-xl shadow-2xl"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <footer id="contact" class="py-24 px-6 md:px-20 bg-gradient-to-t from-[#1a120b] to-[#2c1e14] text-white relative">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+            <div class="space-y-10 text-center md:text-left">
+                <h2 class="text-5xl font-serif text-[var(--heritage-gold)]" data-t="contact_title">Connect with The Family</h2>
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="https://wa.me/919783786028" class="glass p-6 flex flex-col items-center gap-3 hover:bg-white/5 transition group connect-glow">
+                            <div class="w-12 h-12 bg-[#25D366]/20 flex items-center justify-center rounded-full group-hover:bg-[#25D366] transition-colors text-[#25D366] group-hover:text-white">📞</div>
+                            <div class="text-center"><p class="text-xs opacity-50 uppercase tracking-widest mb-1">Meenu</p><p class="text-lg font-bold">+91 97837 86028</p></div>
+                        </a>
+                        <a href="https://wa.me/917231007376" class="glass p-6 flex flex-col items-center gap-3 hover:bg-white/5 transition group connect-glow">
+                            <div class="w-12 h-12 bg-[#25D366]/20 flex items-center justify-center rounded-full group-hover:bg-[#25D366] transition-colors text-[#25D366] group-hover:text-white">📱</div>
+                            <div class="text-center"><p class="text-xs opacity-50 uppercase tracking-widest mb-1">Harshal</p><p class="text-lg font-bold">+91 72310 07376</p></div>
+                        </a>
+                    </div>
+                    <div class="glass p-8 space-y-4 text-left border-l-4 border-l-[var(--heritage-gold)] bg-white/5">
+                        <div class="flex gap-4 items-start">
+                            <span class="text-2xl mt-1 text-[var(--heritage-gold)]">📍</span>
+                            <div>
+                                <h4 class="font-bold text-[var(--heritage-gold)] uppercase tracking-wider text-sm mb-2">Our Home Address</h4>
+                                <p class="opacity-80 text-lg leading-relaxed font-light">9, Brahmpol Rd, Near Jada Ganesh Ji, outside Chandpole, Ambamata, Udaipur, Rajasthan 313001</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="glass flex-1 py-4 text-center hover:bg-[var(--heritage-gold)] hover:text-black transition font-bold uppercase text-[10px] tracking-[0.3em]">Instagram</a>
+                        <a href="#" class="glass flex-1 py-4 text-center hover:bg-[var(--heritage-gold)] hover:text-black transition font-bold uppercase text-[10px] tracking-[0.3em]">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <div class="map-container shadow-2xl">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.1964379057563!2d73.67377828244209!3d24.58241599990846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3967e568727a70c5%3A0xc5f94497f473b792!2sMeenu&#39;s%20Cooking%20School%20and%20Walking%20Culture%20Tour!5e0!3m2!1sen!2sin!4v1776755194888!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p class="text-[10px] opacity-40 uppercase tracking-widest text-center">Visit us at the heart of the Old City</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] opacity-30 tracking-[0.3em] uppercase">
+            &copy; 2026 Meenu's Udaipur - Authentic Souls
+        </div>
+    </footer>
+
+    <!-- Global Modals -->
+    <div id="expModal" class="modal">
+        <div class="flex items-center justify-center p-6 h-full">
+            <div class="glass max-w-2xl w-full max-h-[90vh] overflow-y-auto relative p-8 md:p-12 shadow-2xl">
+                <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl hover:text-[var(--heritage-gold)]">×</button>
+                <div id="modalContent" class="space-y-6"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WA -->
+    <a href="https://wa.me/919783786028" class="floating-wa glass bg-[#25D366] text-white p-4 rounded-full shadow-2xl">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.165 1.237 8.413 3.484 2.247 2.247 3.484 5.236 3.484 8.413 0 6.556-5.332 11.888-11.888 11.888-2.004 0-3.96-.505-5.692-1.464l-6.304 1.677zm6.136-4.043c1.554.921 3.25 1.408 4.985 1.408 5.404 0 9.802-4.398 9.802-9.802 0-2.619-1.02-5.081-2.871-6.932-1.851-1.852-4.314-2.872-6.932-2.872-5.404 0-9.802 4.398-9.802 9.802 0 1.796.49 3.541 1.417 5.068l-.927 3.385 3.468-.921zm9.467-6.934c-.266-.134-1.572-.776-1.816-.864-.243-.088-.42-.132-.597.133-.176.265-.685.864-.84.133s-.309-.354-.62-.509c-1.314-.588-2.203-1.631-2.6-2.316-.133-.23-.014-.354.098-.465.1-.1.217-.265.326-.398.111-.133.148-.221.222-.369.074-.148.037-.277-.018-.398-.056-.122-.597-1.439-.818-1.97-.215-.521-.43-.45-.597-.457-.154-.007-.33-.008-.507-.008-.177 0-.465.066-.708.332-.243.265-.928.907-.928 2.211 0 1.305.948 2.565 1.08 2.742.133.176 1.867 2.851 4.522 3.998.632.273 1.125.435 1.51.559.635.201 1.212.173 1.668.105.509-.076 1.572-.643 1.793-1.263.221-.621.221-1.151.155-1.262-.066-.111-.243-.177-.509-.311z"/></svg>
+    </a>
 
     <script>
-        const experiences = {
-            cooking: { title: "Cooking Classes", desc: "Master the secret alchemy of spices in Meenu's ancestral kitchen. Learn multi-generational recipes in an immersive class shared with 4000+ graduates." },
-            walking: { title: "Culture Tour", desc: "Skip the maps. Discover the hidden soul of the city with our authentic Walking Culture Tour. Discover the living history of Udaipur with 5000+ walkers." },
-            rooms: { title: "Heritage Rooms", desc: "Stay where generations have lived. Traditional guest rooms featuring panoramic rooftops with historic Lake views." },
-            food_tour: { title: "Local Food Tour", desc: "Eat where the residents eat. Find the city's most hidden Mirchi Vada flavor spots and artisanal snack sellers in a wholesome flavor journey." },
-            home_food: { title: "Live Home Food", desc: "No menus, just family. Join us for a genuine home-cooked Rajasthani dinner, prepared fresh at our table shared with 800+ guests." },
-            henna: { title: "Henna Art Making", desc: "Experience the meditative art of traditional Mehndi with organic henna. Learn the cultural patterns and meanings behind every design." }
+        const translations = {
+            en: {
+                nav_home: "Home", nav_journey: "Our Journey", nav_exp: "Experiences", nav_community: "Soul Gallery", nav_contact: "Contact",
+                hero_sub: "Established in 1995. Formerly known as Meenu's Queen's Cafe and Restaurant, run by Meenu, her mother, and Family.", hero_btn: "Explore Experiences",
+                journey_title: "The journey of meenu and her Family. from 1995 to 2026", journey_quote: '"Cooking is the soul\'s way of showing love."', journey_author: "— Meenakshi (Meenu)",
+                t1_year: "1995: The Genesis", t1_desc: "Meenu and her family start the legendary Queen's Cafe in Udaipur. Famed for its Pumpkin Curry, Banana Curry, and Kashmiri Pulao.",
+                t2_year: "2007: Sharing the Art", t2_desc: "Meenu's Cooking Classes began, teaching the true foundation of Indian spices and home-style techniques.",
+                t3_year: "2010 - 2020: The Hiatus", t3_desc: "The restaurant doors closed, but the spirit stayed alive through intimate food gatherings and constant passion.",
+                t4_year: "2015: Culture Walks", t4_desc: "Started Authentic Walking Tours—focusing not just on stones and history, but on the lifestyle and culture of the locals.",
+                t5_year: "2024-2026: The Vision", t5_desc: "Relaunched with Homy Rooms and Local Food Tours. A complete immersion into Udaipur's soul for the new era.",
+                exp_title: "Authentic Souls of Meenu's", exp_sub: "Curated with love by Meenu and her family.",
+                soul_gallery_title: "Moments of Our 6 Souls",
+                tourist_count: "1000+ Tourists",
+                e1_title: "Meenu's Cooking Classes", e1_desc: "Learn the base of cooking Indian food.",
+                e2_title: "Walking Culture Tour", e2_desc: "Authentic Walking tour with not just history but the lifestyle, and culture.",
+                e3_title: "Homy Rooms Available", e3_desc: "2 rooms with attached lat bath, proper ventilation, clean and spacious, in the main city centre nearby major locations.",
+                e4_title: "Local Food Tour", e4_desc: "Started new: where you explore Local food and appetite.",
+                e5_title: "In Kitchen Home Food", e5_desc: "Food that is made in home in front of you that you it being feel of home. (Transitioned from Meenu's Queen's Cafe)",
+                e6_title: "Mehendi Henna Making", e6_desc: "Designs made by Meenu and her sweet daughter with nice customised designs.",
+                learn_more: "Learn More", contact_title: "Connect with The Family", btn_wa: "WhatsApp Booking"
+            },
+            de: {
+                nav_home: "Start", nav_journey: "Unsere Reise", nav_exp: "Erlebnisse", nav_community: "Seelengalerie", nav_contact: "Kontakt",
+                hero_sub: "Gegründet im Jahr 1995. Früher bekannt als Meenu's Queen's Cafe und Restaurant, geführt von Meenu, ihrer Mutter und ihrer Familie.", hero_btn: "Erlebnisse entdecken",
+                journey_title: "Die Reise von Meenu und ihrer Familie (1995-2026)", journey_quote: '"Kochen ist der Weg der Seele, Liebe zu zeigen."', journey_author: "— Meenakshi (Meenu)",
+                t1_year: "1995: Der Anfang", t1_desc: "Meenu und ihre Familie gründen das legendäre Queen's Cafe in Udaipur.",
+                t2_year: "2007: Die Kunst teilen", t2_desc: "Meenus Kochkurse begannen mit den Grundlagen indischer Gewürze.",
+                t3_year: "2010 - 2020: Die Pause", t3_desc: "Der Geist blieb durch private Treffen und Leidenschaft lebendig.",
+                t4_year: "2015: Kulturspaziergänge", t4_desc: "Authentische Wandertouren über den Lebensstil der Einheimischen.",
+                t5_year: "2024-2026: Die Vision", t5_desc: "Neustart mit Homy Rooms und lokalen Food-Touren.",
+                exp_title: "Authentische Seelen von Meenu", exp_sub: "Mit Liebe kuratiert von Meenu und ihrer Familie.",
+                soul_gallery_title: "Momente unserer 6 Seelen",
+                tourist_count: "1000+ Touristen",
+                e1_title: "Kochkurse", e1_desc: "Lernen Sie die Grundlagen der indischen Küche.",
+                e2_title: "Kulturspaziergang", e2_desc: "Authentische Wandertour mit Geschichte und Lebensstil.",
+                e3_title: "Homy Zimmer", e3_desc: "2 saubere Zimmer im Stadtzentrum mit eigenem Bad.",
+                e4_title: "Food Tour", e4_desc: "Neu gestartet: Lokales Essen entdecken.",
+                e5_title: "Hausgemachtes Essen", e5_desc: "Essen, das vor Ihren Augen zu Hause zubereitet wird.",
+                e6_title: "Henna-Kunst", e6_desc: "Designs von Meenu und ihrer Tochter.",
+                learn_more: "Mehr erfahren", contact_title: "Familienkontakt", btn_wa: "WhatsApp Buchung"
+            },
+            fr: {
+                nav_home: "Accueil", nav_journey: "Parcours", nav_exp: "Expériences", nav_community: "Galerie d'Âme", nav_contact: "Contact",
+                hero_sub: "Établi en 1995. Anciennement connu sous le nom de Queen's Cafe and Restaurant de Meenu, géré par Meenu, sa mère et sa famille.", hero_btn: "Explorer les Expériences",
+                journey_title: "Le parcours de Meenu et sa famille (1995-2026)", journey_quote: '"Cuisiner est le moyen pour l\'âme de montrer de l\'amour."', journey_author: "— Meenakshi (Meenu)",
+                t1_year: "1995: La Genèse", t1_desc: "Meenu et sa famille lancent le légendaire Queen's Cafe.",
+                t2_year: "2007: Partager l'Art", t2_desc: "Les cours de cuisine ont commencé avec les bases des épices.",
+                t3_year: "2010 - 2020: L'Interruption", t3_desc: "L'esprit est resté vivant grâce à des rencontres intimes.",
+                t4_year: "2015: Tours Culturels", t4_desc: "Visites à pied authentiques sur le mode de vie local.",
+                t5_year: "2024-2026: La Vision", t5_desc: "Une immersion complète dans l'âme d'Udaipur.",
+                exp_title: "Âmes Authentiques de Meenu", exp_sub: "Conçu avec amour par Meenu et sa famille.",
+                soul_gallery_title: "Moments de nos 6 Âmes",
+                tourist_count: "1000+ Touristes",
+                e1_title: "Cours de Cuisine", e1_desc: "Apprenez les bases de la cuisine indienne.",
+                e2_title: "Tour Culturel", e2_desc: "Visite authentique explorant l'histoire et le mode de vie.",
+                e3_title: "Chambres Homy", e3_desc: "2 chambres spacieuses au centre-ville.",
+                e4_title: "Food Tour", e4_desc: "Nouveau : Explorez la cuisine locale.",
+                e5_title: "Cuisine à la Maison", e5_desc: "Cuisine faite maison devant vous.",
+                e6_title: "Henna & Mehndi", e6_desc: "Dessins réalisés par Meenu et sa fille.",
+                learn_more: "En savoir plus", contact_title: "Contacter la Famille", btn_wa: "Réservation WhatsApp"
+            },
+            es: {
+                nav_home: "Inicio", nav_journey: "Viaje", nav_exp: "Experiencias", nav_community: "Galería de Almas", nav_contact: "Contacto",
+                hero_sub: "Establecido en 1995. Anteriormente conocido como Meenu's Queen's Cafe and Restaurant, dirigido por Meenu, su madre y su familia.", hero_btn: "Explorar Experiencias",
+                journey_title: "El viaje de Meenu y su familia (1995-2026)", journey_quote: '"Cocinar es la forma en que el alma muestra amor."', journey_author: "— Meenakshi (Meenu)",
+                t1_year: "1995: El Génesis", t1_desc: "Meenu y su familia inician el legendario Queen's Cafe.",
+                t2_year: "2007: Compartiendo el Arte", t2_desc: "Comienzan las clases de cocina con las bases de las especias.",
+                t3_year: "2010 - 2020: El Paréntesis", t3_desc: "El espíritu se mantuvo vivo a través de encuentros íntimos.",
+                t4_year: "2015: Tours Culturales", t4_desc: "Tours a pie auténticos sobre el estilo de vida local.",
+                t5_year: "2024-2026: La Visión", t5_desc: "Inmersión completa en el alma de Udaipur.",
+                exp_title: "Almas Auténticas de Meenu", exp_sub: "Curadas con amor por Meenu y su familia.",
+                soul_gallery_title: "Momentos de nuestras 6 Almas",
+                tourist_count: "1000+ Turistas",
+                e1_title: "Clases de Cocina", e1_desc: "Aprende la base de la cocina india.",
+                e2_title: "Tour de Cultura", e2_desc: "Tour a pie auténtico con historia y estilo de vida.",
+                e3_title: "Habitaciones Homy", e3_desc: "2 habitaciones espaciosas en el centro.",
+                e4_title: "Food Tour", e4_desc: "Nuevo : Explora la comida local.",
+                e5_title: "Comida en Casa", e5_desc: "Comida hecha en casa frente a ti.",
+                e6_title: "Mehendi y Henna", e6_desc: "Diseños realizados por Meenu y su hija.",
+                learn_more: "Saber más", contact_title: "Contacta a la Familia", btn_wa: "Reserva WhatsApp"
+            }
         };
 
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('menu-icon');
+            const isActive = menu.classList.toggle('active');
+            btn.innerHTML = isActive ? '×' : '☰';
+            menu.style.pointerEvents = isActive ? 'auto' : 'none';
+        }
+
+        function changeLang(lang) {
+            document.getElementById('current-lang-code').innerText = lang.toUpperCase();
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (translations[lang][key]) el.innerText = translations[lang][key];
+            });
+            document.querySelectorAll('.lang-check').forEach(c => c.classList.add('hidden'));
+            const checkEl = document.getElementById('check-' + lang);
+            if (checkEl) checkEl.classList.remove('hidden');
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const lang = document.getElementById('lang-island');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+                lang.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+                lang.classList.remove('nav-scrolled');
+            }
+        });
+
         function openModal(id) {
-            const data = experiences[id];
-            const gallery = document.getElementById('modalGallery');
-            gallery.innerHTML = `<img src="images/${id}.jpg" class="h-full w-full object-cover flex-none snap-start" onerror="this.src='https://images.unsplash.com/photo-1543353071-873f17a7a088'">`;
-            document.getElementById('modalBody').innerHTML = `
-                <span class="text-[0.75rem] md:text-[0.85rem] brand-heading opacity-50 mb-4 block">THE JOURNEY</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold brand-heading leading-tight tracking-tighter">${data.title}</h2>
-                <p class="opacity-70 text-lg md:text-xl font-light tracking-tight mt-6">${data.desc}</p>
+            const currentLang = document.getElementById('current-lang-code').innerText.toLowerCase();
+            const titles = {
+                cooking: 'e1_title', walking: 'e2_title', rooms: 'e3_title', 
+                foodtour: 'e4_title', homefood: 'e5_title', henna: 'e6_title'
+            };
+            const imgs = {
+                cooking: 'https://images.unsplash.com/photo-1505935428862-770b6f24f629?auto=format&fit=crop&q=80',
+                walking: 'https://images.unsplash.com/photo-1610482298512-6c1183f40c84?auto=format&fit=crop&q=80',
+                rooms: 'https://images.unsplash.com/photo-1590073844006-33379778ae09?auto=format&fit=crop&q=80',
+                foodtour: 'https://images.unsplash.com/photo-1596797038583-1c19d42fe19e?auto=format&fit=crop&q=80',
+                homefood: 'https://images.unsplash.com/photo-1589187151032-573a91317445?auto=format&fit=crop&q=80',
+                henna: 'https://images.unsplash.com/photo-1616147426647-750c18447814?auto=format&fit=crop&q=80'
+            };
+            
+            const title = translations[currentLang][titles[id]];
+            const content = `
+                <div class="rounded-[2rem] overflow-hidden mb-8 h-64 md:h-80"><img src="${imgs[id]}" class="w-full h-full object-cover"></div>
+                <h2 class="text-3xl font-serif text-[var(--heritage-gold)] uppercase tracking-tight">${title}</h2>
+                <p class="text-lg opacity-80 leading-relaxed font-light">${translations[currentLang][id + '_desc'] || translations['en'][id + '_desc'] || ''}</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 pt-8 border-t border-white/10">
+                    <a href="https://wa.me/919783786028?text=Hi Meenu, I am interested in ${title}" class="bg-[#25D366] text-white p-4 rounded-2xl font-bold text-center transition hover:opacity-80">Meenu WhatsApp</a>
+                    <a href="https://wa.me/917231007376?text=Hi Harshal, I am interested in ${title}" class="glass p-4 rounded-2xl font-bold text-center transition hover:bg-white/10">Harshal Booking</a>
+                </div>
             `;
-            const msg = encodeURIComponent("Namaste! I'm interested in the " + data.title + " experience at Meenu's Udaipur.");
-            document.getElementById('wa-link-meenu').href = "https://wa.me/919783786028?text=" + msg;
-            document.getElementById('wa-link-harshal').href = "https://wa.me/917231007376?text=" + msg;
-            document.getElementById('expModal').classList.remove('hidden');
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('expModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById('expModal').classList.add('hidden');
-            document.body.style.overflow = '';
+            document.getElementById('expModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            if (menu.classList.contains('translate-x-full')) {
-                menu.classList.remove('translate-x-full');
-                icon.className = 'fa-solid fa-xmark';
-                document.body.style.overflow = 'hidden';
-            } else {
-                menu.classList.add('translate-x-full');
-                icon.className = 'fa-solid fa-bars-staggered';
-                document.body.style.overflow = '';
-            }
+        function openLocalGallery(imgElement) {
+            const container = imgElement.closest('.relative');
+            const expansion = container.querySelector('.local-expansion');
+            expansion.querySelector('img').src = imgElement.src;
+            expansion.style.display = 'block';
         }
 
-        function animateCounter(el) {
-            if (el.dataset.started) return;
-            el.dataset.started = "true";
-            const target = parseInt(el.dataset.target);
-            const start = 12; 
-            const duration = 5000; 
-            const startTime = performance.now();
-            el.closest('.stat-item').classList.add('active');
-            
-            function update(t) {
-                const progress = Math.min((t - startTime) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 5); 
-                const current = Math.floor(start + (eased * (target - start)));
-                el.innerText = current;
-                if (progress < 1) requestAnimationFrame(update);
-                else el.innerText = target;
-            }
-            requestAnimationFrame(update);
+        function closeLocalGallery(btn) {
+            btn.closest('.local-expansion').style.display = 'none';
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        if (entry.target.id === 'stats-section' || entry.target.querySelector('.counter')) {
-                            document.querySelectorAll('.counter').forEach(animateCounter);
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal, #stats-section').forEach(el => observer.observe(el));
-        });
+        window.onclick = (e) => { 
+            if (e.target.classList.contains('modal')) closeModal(); 
+        }
+        document.getElementById('check-en').classList.remove('hidden');
     </script>
 </body>
 </html>
