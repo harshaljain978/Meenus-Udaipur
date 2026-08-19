@@ -413,7 +413,7 @@
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             <!-- Experience Cards -->
-            <div onclick="openModal('cooking')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
+            <div onclick="openModal('cooking', this)" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
                 <div class="aspect-video overflow-hidden relative"><img src="cooking-class.jpeg" loading="lazy" decoding="async" alt="Authentic cooking class in Meenu's family kitchen" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Authentic Cooking Classes</h3>
@@ -422,7 +422,7 @@
                 </div>
             </div>
             <!-- Box 2 -->
-            <div onclick="openModal('walking')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
+            <div onclick="openModal('walking', this)" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
                 <div class="aspect-video overflow-hidden relative"><img src="culture-tour.jpeg" loading="lazy" decoding="async" alt="Walking culture tour through Udaipur's old city" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Walking Culture Tour</h3>
@@ -431,7 +431,7 @@
                 </div>
             </div>
             <!-- Box 3 -->
-            <div onclick="openModal('rooms')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
+            <div onclick="openModal('rooms', this)" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
                 <div class="aspect-video overflow-hidden relative"><img src="Room.jpeg" loading="lazy" decoding="async" alt="A Homy Room, clean and ventilated" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Homy Rooms</h3>
@@ -440,7 +440,7 @@
                 </div>
             </div>
             <!-- Box 4 -->
-            <div onclick="openModal('foodtour')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
+            <div onclick="openModal('foodtour', this)" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
                 <div class="aspect-video overflow-hidden relative"><img src="food-tour.jpeg" loading="lazy" decoding="async" alt="Local food tour tasting Udaipur street food" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Food Tour</h3>
@@ -449,7 +449,7 @@
                 </div>
             </div>
             <!-- Box 5 -->
-            <div onclick="openModal('homefood')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
+            <div onclick="openModal('homefood', this)" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
                 <div class="aspect-video overflow-hidden relative"><img src="meenus-home-kitchen-food.jpeg" loading="lazy" decoding="async" alt="Heritage home-cooked meal at Meenu's Queen's Cafe" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Queen's Cafe</h3>
@@ -458,7 +458,7 @@
                 </div>
             </div>
             <!-- Box 6 -->
-            <div onclick="openModal('henna')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
+            <div onclick="openModal('henna', this)" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
                 <div class="aspect-video overflow-hidden relative"><img src="henna-making.jpeg" loading="lazy" decoding="async" alt="Mehendi henna art session" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Henna Art</h3>
@@ -644,17 +644,21 @@
             document.body.style.overflow = 'auto';
         }
 
-        function openModal(id) {
+        function openModal(id, cardEl) {
             const expData = {
-                cooking: { title: "Cooking Classes", img: 'cooking-class.jpeg', wa: "Meenu's Cooking Classes", desc: "Experience the heart of Udaipur through its flavors. Join Meenu in her family kitchen to master the intricate balance of local spices and traditional Rajasthani techniques passed down through generations." },
-                walking: { title: "Walking Culture Tour", img: 'culture-tour.jpeg', wa: "the Walking Culture Tour", desc: "Step into the living history of the Old City. This guided walk goes beyond monuments, taking you through hidden alleys to meet artisans and witness the true daily lifestyle of Udaipur's residents." },
-                rooms: { title: "Homy Rooms", img: 'Room.jpeg', wa: "the Homy Rooms", desc: "Our guest rooms offer a peaceful sanctuary in the vibrant city centre. Each room is meticulously cleaned, features attached bathrooms, and is designed with proper ventilation to ensure a comfortable stay." },
-                foodtour: { title: "Local Food Tour", img: 'food-tour.jpeg', wa: "the Local Food Tour", desc: "Embark on a culinary adventure through the best street-side secrets of Udaipur. Taste authentic Kachoris, sweets, and local specialties curated by the legacy of Queen's Cafe." },
-                homefood: { title: "Meenu's Queen's Cafe", img: 'meenus-home-kitchen-food.jpeg', wa: "Meenu's Queen's Cafe Heritage Meal", desc: "Dine as our guest and experience the original 1995 legacy of Meenu's Queen's Cafe. A full, home-cooked heritage meal prepared fresh in front of you, filled with stories and love." },
-                henna: { title: "Mehendi Henna Art", img: 'henna-making.jpeg', wa: "Mehendi Henna Art Session", desc: "Adorn your hands with the intricate beauty of organic henna. Meenu and her daughter craft stunning, customized designs that tell stories of Rajasthani tradition and personal elegance." }
+                cooking: { title: "Cooking Classes", wa: "Meenu's Cooking Classes", desc: "Experience the heart of Udaipur through its flavors. Join Meenu in her family kitchen to master the intricate balance of local spices and traditional Rajasthani techniques passed down through generations." },
+                walking: { title: "Walking Culture Tour", wa: "the Walking Culture Tour", desc: "Step into the living history of the Old City. This guided walk goes beyond monuments, taking you through hidden alleys to meet artisans and witness the true daily lifestyle of Udaipur's residents." },
+                rooms: { title: "Homy Rooms", wa: "the Homy Rooms", desc: "Our guest rooms offer a peaceful sanctuary in the vibrant city centre. Each room is meticulously cleaned, features attached bathrooms, and is designed with proper ventilation to ensure a comfortable stay." },
+                foodtour: { title: "Local Food Tour", wa: "the Local Food Tour", desc: "Embark on a culinary adventure through the best street-side secrets of Udaipur. Taste authentic Kachoris, sweets, and local specialties curated by the legacy of Queen's Cafe." },
+                homefood: { title: "Meenu's Queen's Cafe", wa: "Meenu's Queen's Cafe Heritage Meal", desc: "Dine as our guest and experience the original 1995 legacy of Meenu's Queen's Cafe. A full, home-cooked heritage meal prepared fresh in front of you, filled with stories and love." },
+                henna: { title: "Mehendi Henna Art", wa: "Mehendi Henna Art Session", desc: "Adorn your hands with the intricate beauty of organic henna. Meenu and her daughter craft stunning, customized designs that tell stories of Rajasthani tradition and personal elegance." }
             };
 
             const data = expData[id];
+            // Reuse the exact same image the card is showing, so card and modal always match
+            const cardImg = cardEl ? cardEl.querySelector('img') : null;
+            const imgSrc = cardImg ? cardImg.src : '';
+            const imgAlt = cardImg ? cardImg.alt : data.title;
             
             const svgInsta = `<svg class="uniform-icon" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`;
             const svgFb = `<svg class="uniform-icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`;
@@ -664,7 +668,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     <!-- Left: Horizontal Image -->
                     <div class="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video w-full relative border border-white/10">
-                        <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+                        <img src="${imgSrc}" alt="${imgAlt}" class="w-full h-full object-cover">
                     </div>
                     
                     <!-- Right: Content & Actions -->
