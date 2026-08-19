@@ -294,6 +294,7 @@
                     <a href="#journey" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Journey</a>
                     <a href="#experiences" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Experiences</a>
                     <a href="#stats" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Highlights</a>
+                    <a href="#diary" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Diary</a>
                     <a href="#contact" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Contact</a>
                 </div>
 
@@ -310,6 +311,7 @@
                         <a href="#journey" onclick="closeAll()" class="py-5 hover:bg-white/5 rounded-2xl transition text-xs font-bold tracking-[0.2em] uppercase">Journey</a>
                         <a href="#experiences" onclick="closeAll()" class="py-5 hover:bg-white/5 rounded-2xl transition text-xs font-bold tracking-[0.2em] uppercase">Experiences</a>
                         <a href="#stats" onclick="closeAll()" class="py-5 hover:bg-white/5 rounded-2xl transition text-xs font-bold tracking-[0.2em] uppercase">Highlights</a>
+                        <a href="#diary" onclick="closeAll()" class="py-5 hover:bg-white/5 rounded-2xl transition text-xs font-bold tracking-[0.2em] uppercase">Diary</a>
                         <a href="#contact" onclick="closeAll()" class="py-5 hover:bg-white/5 rounded-2xl transition text-xs font-bold tracking-[0.2em] uppercase border-t border-white/5 mt-2">Contact</a>
                     </div>
                 </div>
@@ -529,6 +531,29 @@
         </div>
     </section>
 
+    <!-- Guest Diary / Reviews Section -->
+    <section id="diary" class="py-24 px-6 md:px-20 bg-[#1a120b]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-serif mb-6">Written In Our Diary</h2>
+                <div class="w-32 h-1 bg-[var(--heritage-gold)] mx-auto opacity-30 rounded-full mb-8"></div>
+                <p class="text-xl md:text-2xl opacity-70 font-serif-italic max-w-3xl mx-auto leading-relaxed">
+                    We haven't been able to collect many reviews online — but our little diary holds thousands of them, written by hand by guests since 1995. Here are a few pages from it.
+                </p>
+            </div>
+
+            <div class="flex justify-center mb-16">
+                <a href="https://www.google.com/maps?cid=14265508714104731538" target="_blank" rel="noopener" class="glass pill px-10 py-5 font-bold text-xs uppercase tracking-[0.3em] hover:bg-white/10 hover:text-[var(--heritage-gold)] transition flex items-center gap-3 shadow-xl">
+                    <svg class="uniform-icon w-5 h-5" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Read & Write Reviews on Google
+                </a>
+            </div>
+
+            <!-- Diary photo gallery: expects diary-01.jpg ... diary-34.jpg in the repo root -->
+            <div id="diaryGallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5"></div>
+        </div>
+    </section>
+
     <!-- Connect Footer -->
     <footer id="contact" class="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-gradient-to-t from-[#000] to-[#1a120b] text-white">
         <div class="max-w-7xl mx-auto space-y-12 md:space-y-20">
@@ -586,15 +611,18 @@
                             </div>
                         </div>
                         
-                        <div class="grid grid-cols-2 gap-4 pt-8 border-t border-white/10 relative z-10">
-                            <a href="https://www.instagram.com/meenus.udaipur?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="glass pill py-4 flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-white/10 transition uppercase font-bold text-[10px] tracking-widest hover:text-[var(--heritage-gold)]">
+                        <div class="pt-8 border-t border-white/10 relative z-10">
+                            <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-4 text-center sm:text-left">Follow along & see what past guests experienced</p>
+                            <div class="grid grid-cols-2 gap-4">
+                            <a href="https://www.instagram.com/meenus.udaipur?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="glass pill py-4 flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-white/10 transition uppercase font-bold text-[10px] tracking-widest hover:text-[var(--heritage-gold)]">
                                 <svg class="uniform-icon w-5 h-5" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                                 <span class="mt-1 sm:mt-0">Instagram</span>
                             </a>
-                            <a href="https://www.facebook.com/meenucooking/" class="glass pill py-4 flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-white/10 transition uppercase font-bold text-[10px] tracking-widest hover:text-[var(--heritage-gold)]">
+                            <a href="https://www.facebook.com/meenucooking/" target="_blank" rel="noopener" class="glass pill py-4 flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-white/10 transition uppercase font-bold text-[10px] tracking-widest hover:text-[var(--heritage-gold)]">
                                 <svg class="uniform-icon w-5 h-5" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                                 <span class="mt-1 sm:mt-0">Facebook</span>
                             </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -677,11 +705,12 @@
                         
                         <p class="text-lg md:text-xl opacity-80 leading-relaxed font-light mb-8">${data.desc}</p>
                         
+                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-4">See real guest moments & experiences</p>
                         <div class="flex items-center gap-8 py-6 border-y border-white/5 mb-8">
-                            <a href="#" class="flex items-center gap-3 hover:text-[var(--heritage-gold)] transition text-xs font-bold uppercase tracking-widest opacity-60">
+                            <a href="https://www.instagram.com/meenus.udaipur?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="flex items-center gap-3 hover:text-[var(--heritage-gold)] transition text-xs font-bold uppercase tracking-widest opacity-60">
                                 ${svgInsta} Instagram
                             </a>
-                            <a href="#" class="flex items-center gap-3 hover:text-[var(--heritage-gold)] transition text-xs font-bold uppercase tracking-widest opacity-60">
+                            <a href="https://www.facebook.com/meenucooking/" target="_blank" rel="noopener" class="flex items-center gap-3 hover:text-[var(--heritage-gold)] transition text-xs font-bold uppercase tracking-widest opacity-60">
                                 ${svgFb} Facebook
                             </a>
                         </div>
@@ -769,7 +798,7 @@
 
         // Highlight the active nav link based on the section in view
         (function initActiveNav() {
-            const sections = ['home', 'journey', 'experiences', 'stats', 'contact']
+            const sections = ['home', 'journey', 'experiences', 'stats', 'diary', 'contact']
                 .map(id => document.getElementById(id))
                 .filter(Boolean);
             const navLinks = document.querySelectorAll('.nav-link');
@@ -837,6 +866,55 @@
             });
             obs.observe(parent, { attributes: true, attributeFilter: ['class'] });
         })();
+        // Diary photo gallery — expects diary-01.jpg ... diary-34.jpg in the repo root.
+        // Change DIARY_PHOTO_COUNT if the number of images changes.
+        (function initDiaryGallery() {
+            const DIARY_PHOTO_COUNT = 34;
+            const gallery = document.getElementById('diaryGallery');
+            if (!gallery) return;
+
+            for (let i = 1; i <= DIARY_PHOTO_COUNT; i++) {
+                const num = String(i).padStart(2, '0');
+                const src = `diary-${num}.jpg`;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'aspect-square rounded-2xl overflow-hidden border border-white/10 glass reveal-ready';
+                btn.setAttribute('aria-label', `Open diary page ${i}`);
+                btn.style.transitionDelay = `${(i % 8) * 60}ms`;
+                btn.innerHTML = `<img src="${src}" loading="lazy" decoding="async" alt="Handwritten guest review, diary page ${i}" class="w-full h-full object-cover hover:scale-105 transition duration-500">`;
+                btn.addEventListener('click', () => openDiaryLightbox(src, i));
+                gallery.appendChild(btn);
+
+                if (!prefersReducedMotion) {
+                    const obs = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('revealed');
+                                obs.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+                    obs.observe(btn);
+                } else {
+                    btn.classList.add('revealed');
+                }
+            }
+        })();
+
+        function openDiaryLightbox(src, pageNum) {
+            document.getElementById('modalContent').innerHTML = `
+                <div class="flex flex-col items-center">
+                    <h2 class="text-2xl md:text-3xl font-serif text-[var(--heritage-gold)] uppercase mb-6 text-center">Diary Page ${pageNum}</h2>
+                    <div class="rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 max-h-[75vh]">
+                        <img src="${src}" alt="Handwritten guest review, diary page ${pageNum}" class="max-h-[75vh] w-auto object-contain">
+                    </div>
+                </div>
+            `;
+            const modalEl = document.getElementById('expModal');
+            modalEl.classList.add('modal-open');
+            document.body.style.overflow = 'hidden';
+            modalEl.querySelector('button').focus();
+        }
     </script>
 </body>
 </html>
