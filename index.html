@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meenu's - Authentic Souls of Udaipur</title>
+    <meta name="description" content="Meenu's, formerly Queen's Cafe, Udaipur since 1995. Authentic cooking classes, walking culture tours, homy rooms, food tours and henna art hosted by Meenu and her family.">
+    <meta property="og:title" content="Meenu's - Authentic Souls of Udaipur">
+    <meta property="og:description" content="A legacy of flavors nurtured by Meenu, her mother, and family since 1995.">
+    <meta property="og:image" content="meenus-home-kitchen-food.jpeg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#1a120b">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -68,11 +76,13 @@
         .hero-bg-overlay {
             position: absolute;
             inset: 0;
-            background-image: url('hero_bg.jpg');
+            background-image: url('meenus-home-kitchen-food.jpeg');
             background-size: cover;
             background-position: center;
-            opacity: 0.15;
+            opacity: 0.18;
             z-index: 0;
+            transform: scale(1.08);
+            will-change: transform;
         }
 
         .hero-vignette {
@@ -214,6 +224,59 @@
 
         /* Text Balance */
         .content-width { max-width: 75ch; margin-left: auto; margin-right: auto; }
+
+        /* Scroll reveal */
+        .reveal-ready {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-ready.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Active nav link */
+        .nav-link.active-link {
+            color: var(--heritage-gold);
+            opacity: 1;
+        }
+
+        /* Smooth modal open/close */
+        .modal {
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .modal.modal-open {
+            display: block;
+            opacity: 1;
+        }
+        .modal .glass {
+            transform: scale(0.96) translateY(10px);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+        .modal.modal-open .glass {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* Visible keyboard focus for accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--heritage-gold);
+            outline-offset: 3px;
+            border-radius: 0.5rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-ready, .reveal-ready.revealed, .modal, .modal .glass {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .scroll-indicator { animation: none !important; }
+            html { scroll-behavior: auto !important; }
+        }
     </style>
 </head>
 <body>
@@ -227,11 +290,11 @@
                 <a href="#" class="text-xl md:text-2xl font-serif text-[var(--heritage-gold)] uppercase shrink-0 tracking-widest font-bold">Meenu's</a>
                 
                 <div class="hidden lg:flex items-center gap-10 text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">
-                    <a href="#home" class="hover:text-[var(--heritage-gold)] transition-colors">Home</a>
-                    <a href="#journey" class="hover:text-[var(--heritage-gold)] transition-colors">Journey</a>
-                    <a href="#experiences" class="hover:text-[var(--heritage-gold)] transition-colors">Experiences</a>
-                    <a href="#stats" class="hover:text-[var(--heritage-gold)] transition-colors">Highlights</a>
-                    <a href="#contact" class="hover:text-[var(--heritage-gold)] transition-colors">Contact</a>
+                    <a href="#home" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Home</a>
+                    <a href="#journey" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Journey</a>
+                    <a href="#experiences" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Experiences</a>
+                    <a href="#stats" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Highlights</a>
+                    <a href="#contact" class="nav-link hover:text-[var(--heritage-gold)] transition-colors">Contact</a>
                 </div>
 
                 <button class="lg:hidden p-2 text-xl" onclick="toggleElement('navbar-parent', event)">
@@ -300,13 +363,13 @@
                 <div class="space-y-8">
                     <div class="flex flex-col gap-8">
                         <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-2 border-[var(--glass-border)] aspect-video group">
-                            <img src="queen-cafe-meenus.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onerror="this.src='queen-cafe-meenus.jpg&w=1200'">
+                            <img src="queen-cafe-meenus.jpg" loading="lazy" decoding="async" alt="Queen's Cafe, the original 1995 restaurant" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
                             <div class="absolute inset-0 bg-black/40"></div>
                             <div class="absolute top-8 left-8 glass pill px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-white">1995 Era</div>
                             <div class="absolute bottom-8 left-8"><h3 class="text-3xl font-serif text-[var(--heritage-gold)]">Queen's Cafe</h3></div>
                         </div>
                         <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-2 border-[var(--glass-border)] aspect-video group">
-                            <img src="journey_new_place.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200'">
+                            <img src="Room.jpeg" loading="lazy" decoding="async" alt="A Homy Room, part of Meenu's 2026 hospitality vision" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
                             <div class="absolute inset-0 bg-black/40"></div>
                             <div class="absolute top-8 left-8 glass pill px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-white">2026 Vision</div>
                             <div class="absolute bottom-8 left-8"><h3 class="text-3xl font-serif text-[var(--heritage-gold)]">Meenu's Today</h3></div>
@@ -351,7 +414,7 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             <!-- Experience Cards -->
             <div onclick="openModal('cooking')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
-                <div class="aspect-video overflow-hidden relative"><img src="cooking-class.jpeg" class="w-full h-full object-cover" onerror="this.src='cooking-class.jpegw=800'"></div>
+                <div class="aspect-video overflow-hidden relative"><img src="cooking-class.jpeg" loading="lazy" decoding="async" alt="Authentic cooking class in Meenu's family kitchen" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Authentic Cooking Classes</h3>
                     <p class="text-sm opacity-60 font-light leading-relaxed">Master the foundation of authentic Indian spices in our family kitchen.</p>
@@ -360,7 +423,7 @@
             </div>
             <!-- Box 2 -->
             <div onclick="openModal('walking')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
-                <div class="aspect-video overflow-hidden relative"><img src="culture-tour.jpeg" class="w-full h-full object-cover" onerror="this.src='culture-tour.jpegw=800'"></div>
+                <div class="aspect-video overflow-hidden relative"><img src="culture-tour.jpeg" loading="lazy" decoding="async" alt="Walking culture tour through Udaipur's old city" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Walking Culture Tour</h3>
                     <p class="text-sm opacity-60 font-light leading-relaxed">An authentic journey through history, lifestyle, and local culture.</p>
@@ -369,7 +432,7 @@
             </div>
             <!-- Box 3 -->
             <div onclick="openModal('rooms')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
-                <div class="aspect-video overflow-hidden relative"><img src="Room.jpeg" class="w-full h-full object-cover" onerror="this.src='Room.jpegw=800'"></div>
+                <div class="aspect-video overflow-hidden relative"><img src="Room.jpeg" loading="lazy" decoding="async" alt="A Homy Room, clean and ventilated" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Homy Rooms</h3>
                     <p class="text-sm opacity-60 font-light leading-relaxed">Spacious, clean, and ventilated stays in the city heart.</p>
@@ -378,7 +441,7 @@
             </div>
             <!-- Box 4 -->
             <div onclick="openModal('foodtour')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
-                <div class="aspect-video overflow-hidden relative"><img src="food-tour.jpeg" class="w-full h-full object-cover" onerror="this.src='food-tour.jpegw=800'"></div>
+                <div class="aspect-video overflow-hidden relative"><img src="food-tour.jpeg" loading="lazy" decoding="async" alt="Local food tour tasting Udaipur street food" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Food Tour</h3>
                     <p class="text-sm opacity-60 font-light leading-relaxed">Explore the flavors and street food heritage of Udaipur.</p>
@@ -387,7 +450,7 @@
             </div>
             <!-- Box 5 -->
             <div onclick="openModal('homefood')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
-                <div class="aspect-video overflow-hidden relative"><img src="exp_homefood.jpg" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1589187151032-573a91317445?w=800'"></div>
+                <div class="aspect-video overflow-hidden relative"><img src="meenus-home-kitchen-food.jpeg" loading="lazy" decoding="async" alt="Heritage home-cooked meal at Meenu's Queen's Cafe" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Queen's Cafe</h3>
                     <p class="text-sm opacity-60 font-light leading-relaxed">The original 1995 legacy meal prepared fresh in front of you.</p>
@@ -396,7 +459,7 @@
             </div>
             <!-- Box 6 -->
             <div onclick="openModal('henna')" class="glass pill card-zoom overflow-hidden group cursor-pointer transition-all hover:-translate-y-3 border border-[var(--glass-border)] text-center">
-                <div class="aspect-video overflow-hidden relative"><img src="exp_henna.jpg" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1616147426647-750c18447814?w=800'"></div>
+                <div class="aspect-video overflow-hidden relative"><img src="henna-making.jpeg" loading="lazy" decoding="async" alt="Mehendi henna art session" class="w-full h-full object-cover"></div>
                 <div class="p-10">
                     <h3 class="text-3xl font-serif text-[var(--heritage-gold)] mb-3">Henna Art</h3>
                     <p class="text-sm opacity-60 font-light leading-relaxed">Organic customized designs by Meenu and her daughter.</p>
@@ -583,12 +646,12 @@
 
         function openModal(id) {
             const expData = {
-                cooking: { title: "Cooking Classes", img: 'cooking-class.jpeg', alt: 'https://images.unsplash.com/photo-1505935428862-770b6f24f629?w=800', wa: "Meenu's Cooking Classes", desc: "Experience the heart of Udaipur through its flavors. Join Meenu in her family kitchen to master the intricate balance of local spices and traditional Rajasthani techniques passed down through generations." },
-                walking: { title: "Walking Culture Tour", img: 'exp_walking.jpg', alt: 'https://images.unsplash.com/photo-1610482298512-6c1183f40c84?w=800', wa: "the Walking Culture Tour", desc: "Step into the living history of the Old City. This guided walk goes beyond monuments, taking you through hidden alleys to meet artisans and witness the true daily lifestyle of Udaipur's residents." },
-                rooms: { title: "Homy Rooms", img: 'exp_rooms.jpg', alt: 'https://images.unsplash.com/photo-1590073844006-33379778ae09?w=800', wa: "the Homy Rooms", desc: "Our guest rooms offer a peaceful sanctuary in the vibrant city centre. Each room is meticulously cleaned, features attached bathrooms, and is designed with proper ventilation to ensure a comfortable stay." },
-                foodtour: { title: "Local Food Tour", img: 'exp_foodtour.jpg', alt: 'https://images.unsplash.com/photo-1596797038583-1c19d42fe19e?w=800', wa: "the Local Food Tour", desc: "Embark on a culinary adventure through the best street-side secrets of Udaipur. Taste authentic Kachoris, sweets, and local specialties curated by the legacy of Queen's Cafe." },
-                homefood: { title: "Meenu's Queen's Cafe", img: 'exp_homefood.jpg', alt: 'https://images.unsplash.com/photo-1589187151032-573a91317445?w=800', wa: "Meenu's Queen's Cafe Heritage Meal", desc: "Dine as our guest and experience the original 1995 legacy of Meenu's Queen's Cafe. A full, home-cooked heritage meal prepared fresh in front of you, filled with stories and love." },
-                henna: { title: "Mehendi Henna Art", img: 'exp_henna.jpg', alt: 'https://images.unsplash.com/photo-1616147426647-750c18447814?w=800', wa: "Mehendi Henna Art Session", desc: "Adorn your hands with the intricate beauty of organic henna. Meenu and her daughter craft stunning, customized designs that tell stories of Rajasthani tradition and personal elegance." }
+                cooking: { title: "Cooking Classes", img: 'cooking-class.jpeg', wa: "Meenu's Cooking Classes", desc: "Experience the heart of Udaipur through its flavors. Join Meenu in her family kitchen to master the intricate balance of local spices and traditional Rajasthani techniques passed down through generations." },
+                walking: { title: "Walking Culture Tour", img: 'culture-tour.jpeg', wa: "the Walking Culture Tour", desc: "Step into the living history of the Old City. This guided walk goes beyond monuments, taking you through hidden alleys to meet artisans and witness the true daily lifestyle of Udaipur's residents." },
+                rooms: { title: "Homy Rooms", img: 'Room.jpeg', wa: "the Homy Rooms", desc: "Our guest rooms offer a peaceful sanctuary in the vibrant city centre. Each room is meticulously cleaned, features attached bathrooms, and is designed with proper ventilation to ensure a comfortable stay." },
+                foodtour: { title: "Local Food Tour", img: 'food-tour.jpeg', wa: "the Local Food Tour", desc: "Embark on a culinary adventure through the best street-side secrets of Udaipur. Taste authentic Kachoris, sweets, and local specialties curated by the legacy of Queen's Cafe." },
+                homefood: { title: "Meenu's Queen's Cafe", img: 'meenus-home-kitchen-food.jpeg', wa: "Meenu's Queen's Cafe Heritage Meal", desc: "Dine as our guest and experience the original 1995 legacy of Meenu's Queen's Cafe. A full, home-cooked heritage meal prepared fresh in front of you, filled with stories and love." },
+                henna: { title: "Mehendi Henna Art", img: 'henna-making.jpeg', wa: "Mehendi Henna Art Session", desc: "Adorn your hands with the intricate beauty of organic henna. Meenu and her daughter craft stunning, customized designs that tell stories of Rajasthani tradition and personal elegance." }
             };
 
             const data = expData[id];
@@ -601,7 +664,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     <!-- Left: Horizontal Image -->
                     <div class="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video w-full relative border border-white/10">
-                        <img src="${data.img}" class="w-full h-full object-cover" onerror="this.src='${data.alt}'">
+                        <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
                     </div>
                     
                     <!-- Right: Content & Actions -->
@@ -630,14 +693,23 @@
                     </div>
                 </div>
             `;
-            document.getElementById('expModal').style.display = 'block';
+            const modalEl = document.getElementById('expModal');
+            modalEl.classList.add('modal-open');
             document.body.style.overflow = 'hidden';
+            modalEl.querySelector('button').focus();
         }
 
         function closeModal() {
-            document.getElementById('expModal').style.display = 'none';
+            document.getElementById('expModal').classList.remove('modal-open');
             document.body.style.overflow = 'auto';
         }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeAll();
+            }
+        });
 
         window.onclick = function(e) {
             if (!e.target.closest('#navbar-parent')) closeAll();
@@ -648,6 +720,119 @@
             if (window.scrollY > 50) nav?.classList.add('nav-scrolled');
             else nav?.classList.remove('nav-scrolled');
         });
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Subtle hero parallax on scroll
+        if (!prefersReducedMotion) {
+            const heroBg = document.querySelector('.hero-bg-overlay');
+            window.addEventListener('scroll', () => {
+                if (heroBg && window.scrollY < window.innerHeight) {
+                    heroBg.style.transform = `scale(1.08) translateY(${window.scrollY * 0.15}px)`;
+                }
+            });
+        }
+
+        // Scroll-triggered reveal animation for cards, images and stat boxes
+        (function initReveal() {
+            const selectors = [
+                '.card-zoom',
+                '.highlight-stat-box',
+                '#journey .rounded-\\[3rem\\]',
+                '#journey .glass',
+                '#contact .glass',
+                '.map-container'
+            ];
+            const targets = document.querySelectorAll(selectors.join(', '));
+
+            targets.forEach((el, i) => {
+                if (prefersReducedMotion) return;
+                el.classList.add('reveal-ready');
+                el.style.transitionDelay = `${(i % 6) * 90}ms`;
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+            targets.forEach(el => observer.observe(el));
+        })();
+
+        // Highlight the active nav link based on the section in view
+        (function initActiveNav() {
+            const sections = ['home', 'journey', 'experiences', 'stats', 'contact']
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const setActive = (id) => {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active-link', link.getAttribute('href') === `#${id}`);
+                });
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) setActive(entry.target.id);
+                });
+            }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(sec => observer.observe(sec));
+        })();
+
+        // Animate the big stat numbers (e.g. "10,000+") counting up when scrolled into view
+        (function initCounters() {
+            const statEls = document.querySelectorAll('.highlight-stat-box > div.font-serif');
+
+            const animateCount = (el) => {
+                const raw = el.textContent.trim();
+                const numeric = parseInt(raw.replace(/[^\d]/g, ''), 10);
+                const suffix = raw.replace(/[\d,]/g, '');
+                if (isNaN(numeric) || prefersReducedMotion) return;
+
+                const duration = 1400;
+                const start = performance.now();
+
+                const tick = (now) => {
+                    const progress = Math.min((now - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(eased * numeric);
+                    el.textContent = current.toLocaleString('en-IN') + suffix;
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = raw;
+                };
+                requestAnimationFrame(tick);
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCount(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            statEls.forEach(el => observer.observe(el));
+        })();
+
+        // Accessibility: keep the hamburger button in sync with menu state
+        (function initMenuAria() {
+            const menuBtn = document.querySelector('button[onclick*="navbar-parent"]');
+            if (!menuBtn) return;
+            menuBtn.setAttribute('aria-label', 'Toggle navigation menu');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            const parent = document.getElementById('navbar-parent');
+            const obs = new MutationObserver(() => {
+                menuBtn.setAttribute('aria-expanded', parent.classList.contains('active') ? 'true' : 'false');
+            });
+            obs.observe(parent, { attributes: true, attributeFilter: ['class'] });
+        })();
     </script>
 </body>
 </html>
